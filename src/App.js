@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./Component/Header";
 import About from "./pages/about";
 import Contact from "./pages/contact";
+import CreateAccount from "./pages/create-account";
 import Details from "./pages/details";
 import EditContact from "./pages/editContact";
 import ErrorPage from "./pages/errorPage";
@@ -12,6 +13,14 @@ import Login from "./pages/login";
 function App() {
   let element = useRoutes([
     {
+      path: "/login",
+      element: <Login />,
+    },
+    {
+      path: "/create-account",
+      element: <CreateAccount />,
+    },
+    {
       element: <Header />,
       children: [
         {
@@ -19,6 +28,7 @@ function App() {
           element: <Home />,
           errorElement: <ErrorPage />,
         },
+
         {
           path: "/about",
           element: <About />,
@@ -27,10 +37,7 @@ function App() {
           path: "/details",
           element: <Details />,
         },
-        {
-          path: "/login",
-          element: <Login />,
-        },
+
         {
           path: "/contact",
           children: [

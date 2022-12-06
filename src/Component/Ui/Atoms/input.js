@@ -18,6 +18,13 @@ const InputEl = styled.input`
   font-size: 20px;
   border: 0;
   border-bottom: 2px solid black;
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    -webkit-transition: "white";
+    -webkit-transition-delay: 9999s;
+  }
 `;
 
 const Label = styled.label`
@@ -26,11 +33,11 @@ const Label = styled.label`
   font-size: 20px;
 `;
 
-export default function Input({ type, name, labelName, id, onChange }) {
+export default function Input({ type, name, labelName, id, onChange, value }) {
   return (
     <ContainerEl>
       <Label htmlFor={id}>{labelName}</Label>
-      <InputEl name={name} type={type} onChange={onChange} />
+      <InputEl name={name} type={type} onChange={onChange} value={value} />
     </ContainerEl>
   );
 }

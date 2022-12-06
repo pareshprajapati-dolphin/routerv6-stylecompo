@@ -1,47 +1,46 @@
-import { useState, useMemo, createContext, useContext, useEffect } from "react";
+import { useState, useMemo, createContext, useContext } from "react";
 // import { getUser } from "./auth.js";
 // import AuthContext from "./AuthContext";
 import Cookies from "js-cookie";
-import { useLocalStorage } from "./useLocalStorage";
-import { useSessionStorage } from "./useSessionStorage";
+import { useLocalStorage } from "../../hook/useLocalStorage";
+import { useSessionStorage } from "../../hook/useSessionStorage";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  // const [store, setStore] = useLocalStorage("userData");
   const [user, setUser] = useLocalStorage("user");
   const [loginData, setLoginData] = useState(false);
   const [userToken, setUserToken] = useSessionStorage("token");
 
-  const login = async (data) => {
-    console.log("_pp test user Data pass in context:", data);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const login = async (data, token) => {
     setLoginData(true);
-    setUser(data.useData);
-    setUserToken(data.token);
+    setUser(data?.data);
+    setUserToken(token);
     // setUser(data);
-
-    return true;
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const logout = (props) => {
     localStorage.removeItem("user");
     Cookies.remove("token");
-    props("/login");
+
     // setUser(false);
-    // setUser("");
-    // setUserToken("");
+    setUser();
+    setUserToken();
   };
 
   const value = useMemo(
     () => ({
       user,
       login,
+      setUser,
       loginData,
       userToken,
       logout,
       // store,
     }),
-    [user]
+    [login, loginData, logout, setUser, user, userToken]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

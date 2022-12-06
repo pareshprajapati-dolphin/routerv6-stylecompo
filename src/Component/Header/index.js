@@ -4,13 +4,16 @@ import routes from "../Routes";
 import styled, { css } from "styled-components";
 
 const Wrapper = styled.section`
-  padding: 10px;
+  padding: 2px 0px;
   background: papayawhip;
   > ul {
     display: flex;
     list-style: none;
+    @media (max-width: 768px) {
+      flex-direction: column;
+      width: 100%;
+    }
   }
-
   a {
     text-decoration: none;
   }
@@ -37,10 +40,8 @@ export default function Header() {
       <Wrapper>
         <ul>
           {routes.map((router, idx) => (
-            <StyledLi active={router.path === location.pathname}>
-              <Link to={router.path} key={idx}>
-                {router.navbar}
-              </Link>
+            <StyledLi active={router.path === location.pathname} key={idx}>
+              <Link to={router.path}>{router.navbar}</Link>
             </StyledLi>
           ))}
         </ul>

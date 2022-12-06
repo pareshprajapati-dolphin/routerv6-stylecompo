@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-const StyledDiv = styled.div`
-  position: fixed;
-  font-size: 32px;
-  color: white;
+const LabelTag = styled.label`
+  width: 100px;
+  padding: 3px 5px;
+  font-size: 20px;
 `;
 
-export default function Label() {
-  return <StyledDiv>Label</StyledDiv>;
+export default function Label({ labelName }) {
+  return <LabelTag>{labelName}</LabelTag>;
 }

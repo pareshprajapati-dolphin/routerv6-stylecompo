@@ -1,13 +1,14 @@
 import { useState } from "react";
+import Cookies from "js-cookie";
 
-export const useLocalStorage = (keyName, defaultValue) => {
+export const useSessionStorage = (keyName, defaultValue) => {
   const [storedValue, setStoredValue] = useState(() => {
     try {
-      const value = localStorage.getItem(keyName);
+      const value = Cookies.get(keyName);
       if (value) {
         return value;
-      } else {
-        localStorage.setItem(keyName, defaultValue);
+      } else if (defaultValue) {
+        Cookies.set("token", defaultValue, { expires: 1 });
         return defaultValue;
       }
     } catch (err) {
@@ -17,7 +18,7 @@ export const useLocalStorage = (keyName, defaultValue) => {
 
   const setValue = (newValue) => {
     try {
-      localStorage.setItem(keyName, newValue);
+      Cookies.set(keyName, newValue, { expires: 1 });
     } catch (err) {}
     setStoredValue(newValue);
   };

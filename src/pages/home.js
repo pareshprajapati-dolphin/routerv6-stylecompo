@@ -1,31 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../Component/Header";
 import { useAuth } from "../Component/store/AuthProvider";
+import { useLocalStorage } from "../hook/useLocalStorage";
 // import useAuthContext from "../hook/ useAuthContext";
 
 export default function Home() {
-  const { user } = useAuth();
+  // const { user, userToken, logout } = useAuth();
   const navigation = useNavigate();
+  const [localUser, setLocalUser] = useLocalStorage("userdata");
 
-  console.log("_pp test context userData::", user);
+  useEffect(() => {
+    if (localUser === undefined) {
+      navigation("/login");
+    } else {
+    }
+  }, [localUser, navigation]);
 
-  if (user === "undefined" || user === "null") {
-    localStorage.removeItem("user");
-    navigation("/login");
-  }
-
-  const handleClick = () => {
-    localStorage.setItem("userData", "test123");
-    // login({
-    //   localData: "test123",
-    //   tokenData: "test56789",
-    // });
-  };
+  // const handleClick = () => {
+  //   localStorage.setItem("userData", "test123");
+  // };
   return (
     <div>
       <h1>This is the home page </h1>
-      <button onClick={() => handleClick()}>Click</button>
+      {/* <button onClick={() => handleClick()}>Click</button> */}
     </div>
   );
 }
