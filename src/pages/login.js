@@ -7,6 +7,8 @@ import Button from "../Component/Ui/Atoms/button";
 import Input from "../Component/Ui/Atoms/input";
 import { loginApi } from "../Api/apiService";
 import { useLocalStorage } from "../hook/useLocalStorage";
+import { useCookiesStorage } from "../hook/useCookiesStorage";
+import CheckBox from "../Component/Ui/Atoms/checkBox";
 
 const StyledDiv = styled.div`
   display: block;
@@ -32,34 +34,38 @@ export default function Login() {
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
+    isChecked: false,
   });
 
   const [localUser, setLocalUser] = useLocalStorage("userdata");
+  const [appToken, setAppToken] = useCookiesStorage("appToken");
+
   let date = "2022-12-04T08:55:53.000000Z";
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, checked, type } = e.target;
 
-    setLoginData({
-      ...loginData,
-      [name]: value,
-    });
+    if (type === "checkbox") {
+      setLoginData({
+        ...loginData,
+        [name]: checked,
+      });
+    } else {
+      setLoginData({
+        ...loginData,
+        [name]: value,
+      });
+    }
   };
 
   const handleSubmitt = async (e) => {
     e.preventDefault();
-    // if (loginData.email.length > 0 && loginData.password.length > 0) {
-    //   localStorage.setItem("user", "test123");
-    //   login({
-    //     useData: "test123",
-    //     token: "tokenTest",
-    //   });
-    //   navigation("/about", { replace: true });
-    // }
+    console.log("-- test :", loginData);
 
     const data = await loginApi(loginData);
     if (data.status === 200) {
       setLocalUser(data.data);
+      setAppToken(data?.data?.token);
 
       // login(data, data?.data?.token);
       navigation("/", { replace: true });
@@ -67,12 +73,14 @@ export default function Login() {
   };
 
   useEffect(() => {
-    if (localUser === undefined) {
-      navigation("/login");
-    } else {
+    if (localUser !== undefined && appToken !== undefined) {
       navigation("/");
+    } else {
+      setAppToken();
+      setLocalUser();
+      navigation("/login");
     }
-  }, [localUser, navigation]);
+  }, [appToken, localUser, navigation]);
 
   return (
     <>
@@ -97,6 +105,7 @@ export default function Login() {
             id="email"
             name="email"
             type="text"
+            value={loginData.email}
             labelName="Email Address"
             onChange={(e) => {
               handleChange(e);
@@ -106,11 +115,22 @@ export default function Login() {
             id="password"
             name="password"
             type="password"
+            value={loginData.password}
             labelName="Password"
             onChange={(e) => {
               handleChange(e);
             }}
           />
+
+          <CheckBox
+            id="isChecked"
+            name="isChecked"
+            type="checkbox"
+            value={loginData.isChecked}
+            labelName=" Subscribe to newsletter?"
+            onChange={(e) => handleChange(e)}
+          />
+
           <div style={{ display: " flex " }}>
             <Button
               label="Login"
