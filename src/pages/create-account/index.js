@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Button from "../../Component/Ui/Atoms/button";
+import CheckBox from "../../Component/Ui/Atoms/checkBox";
 import Input from "../../Component/Ui/Atoms/input";
 import Select from "../../Component/Ui/Atoms/select";
 
@@ -32,14 +33,21 @@ export default function CreateAccount() {
     password: "",
     email: "",
     gender: "mr",
+    termCondi: false,
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setRegiData({
-      ...regiData,
-      [name]: value,
-    });
+    const { name, value, type, checked } = e.target;
+    if (type === "checkbox") {
+      setRegiData({
+        ...regiData,
+        [name]: checked,
+      });
+    } else
+      setRegiData({
+        ...regiData,
+        [name]: value,
+      });
   };
   const handleSubmitt = (e) => {
     e.preventDefault();
@@ -106,6 +114,16 @@ export default function CreateAccount() {
               { value: "other", name: "Other" },
             ]}
           />
+          <div>
+            <CheckBox
+              id="termCondi"
+              name="termCondi"
+              type="checkbox"
+              labelName="I agree to the terms and conditions."
+              value={regiData.termCondi}
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
 
           <div style={{ display: " flex " }}>
             <Button

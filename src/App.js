@@ -28,18 +28,16 @@ function App() {
           element: <Home />,
           errorElement: <ErrorPage />,
         },
-
         {
-          path: "/about",
+          path: "about",
           element: <About />,
         },
         {
-          path: "/details",
+          path: "details",
           element: <Details />,
         },
-
         {
-          path: "/contact",
+          path: "contact",
           children: [
             {
               index: true,
@@ -81,17 +79,7 @@ function App() {
   //         />
   //         </Route>
   //       </Route>{" "} */}
-  //       {/* <Routes>
-  //         {routes.map((router, idx) => (
-  //           <>
-  //             <Route path={router.path} element={router.component} key={idx} />
-  //             {router?.child &&
-  //               router.child.map((c, i) => (
-  //                 <Route path={c.path} element={c.component} key={i} />
-  //               ))}
-  //           </>
-  //         ))}
-  //       </Routes> */}
+
   //     </div>
   //   </div>
   // );

@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const SelectDiv = styled.select`
   width: auto;
-  padding: 12px 20px;
+  padding: 8px 11px;
   margin: 8px 0;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -25,7 +25,7 @@ export default function Select({
   labelName,
 }) {
   return (
-    <containerDiv>
+    <>
       <Label>{labelName}</Label>
       <SelectDiv onChange={onChange} name={name} value={value}>
         {optionList.map((optionData, i) => {
@@ -36,6 +36,6 @@ export default function Select({
           );
         })}
       </SelectDiv>
-    </containerDiv>
+    </>
   );
 }

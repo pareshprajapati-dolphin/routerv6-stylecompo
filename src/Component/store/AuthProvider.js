@@ -3,14 +3,14 @@ import { useState, useMemo, createContext, useContext } from "react";
 // import AuthContext from "./AuthContext";
 import Cookies from "js-cookie";
 import { useLocalStorage } from "../../hook/useLocalStorage";
-import { useSessionStorage } from "../../hook/useSessionStorage";
+import { useCookiesStorage } from "../../hook/useCookiesStorage";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useLocalStorage("user");
   const [loginData, setLoginData] = useState(false);
-  const [userToken, setUserToken] = useSessionStorage("token");
+  const [userToken, setUserToken] = useCookiesStorage("token");
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const login = async (data, token) => {
