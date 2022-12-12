@@ -4,11 +4,13 @@ import { ThemeProvider } from "styled-components";
 import "./App.css";
 import Layout from "./Component/Layout";
 import About from "./pages/about";
+import Service from "./pages/services";
 import Contact from "./pages/contact";
 import CreateAccount from "./pages/create-account";
 import Details from "./pages/details";
 import EditContact from "./pages/editContact";
 import ErrorPage from "./pages/errorPage";
+
 import Home from "./pages/home";
 import Login from "./pages/login/login";
 import GlobalStyles from "./style/GlobalStyle";
@@ -18,7 +20,8 @@ const theme = {
     header: "#ebfbff",
     body: "#fff",
     footer: "#003333",
-    disabled: "#0000",
+    disabled: "skyblue",
+    bg: "rgb(249 249 255)",
   },
   mobile: "768px",
 };
@@ -44,6 +47,10 @@ function App() {
         {
           path: "about",
           element: <About />,
+        },
+        {
+          path: "service",
+          element: <Service />,
         },
         {
           path: "details",

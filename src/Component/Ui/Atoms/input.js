@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import PasswordToggle from "../../../hook/usePasswordToggle";
 
 const ContainerEl = styled.div`
-  width: 50%;
+  width: 100%;
   flex-direction: row;
-  // position: fixed;
+
   margin-bottom: 10px;
   @media (max-width: 768px) {
     flex-direction: column;
@@ -16,6 +17,7 @@ const InputEl = styled.input`
   width: 100%;
   outline: 0;
   font-size: 20px;
+  padding: 5px 0px;
   border: 0;
   border-bottom: 2px solid black;
   &:-webkit-autofill,
@@ -29,11 +31,10 @@ const InputEl = styled.input`
 
 const Label = styled.label`
   width: 100px;
-  padding: 3px 5px;
   font-size: 20px;
 `;
 
-export default function Input({ type, name, labelName, id, onChange, value }) {
+function Input({ type, name, labelName, id, onChange, value }) {
   return (
     <ContainerEl>
       <Label htmlFor={id}>{labelName}</Label>
@@ -41,3 +42,21 @@ export default function Input({ type, name, labelName, id, onChange, value }) {
     </ContainerEl>
   );
 }
+
+function PasswordInput({ type, name, labelName, id, onChange, value }) {
+  const [PasswordInputType, ToggleIcon] = PasswordToggle();
+  return (
+    <ContainerEl>
+      <Label htmlFor={id}>{labelName}</Label>
+      <InputEl
+        name={name}
+        type={PasswordInputType}
+        onChange={onChange}
+        value={value}
+      />
+      {/* {ToggleIcon} */}
+    </ContainerEl>
+  );
+}
+
+export { Input, PasswordInput };

@@ -39,12 +39,12 @@ const LeftArrow = styled.button`
 const StyledDiv = styled.div`
   display: flex;
   height: inherit;
-  width: inherit
+  width: inherit;
   transform: translate3d(${({ currentSlide }) => currentSlide}%, 0px, 0px);
   transition-duration: 350ms;
   @media (max-width: 768px) {
     width: 50%;
-    height:50%;
+    height: 50%;
   }
 `;
 const Sliderh1 = styled.h1`
