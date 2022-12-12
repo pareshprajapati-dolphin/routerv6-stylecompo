@@ -1,6 +1,8 @@
 import { useRoutes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import { ThemeProvider } from "styled-components";
 import "./App.css";
-import Header from "./Component/Header";
+import Layout from "./Component/Layout";
 import About from "./pages/about";
 import Contact from "./pages/contact";
 import CreateAccount from "./pages/create-account";
@@ -8,7 +10,18 @@ import Details from "./pages/details";
 import EditContact from "./pages/editContact";
 import ErrorPage from "./pages/errorPage";
 import Home from "./pages/home";
-import Login from "./pages/login";
+import Login from "./pages/login/login";
+import GlobalStyles from "./style/GlobalStyle";
+
+const theme = {
+  colors: {
+    header: "#ebfbff",
+    body: "#fff",
+    footer: "#003333",
+    disabled: "#0000",
+  },
+  mobile: "768px",
+};
 
 function App() {
   let element = useRoutes([
@@ -21,7 +34,7 @@ function App() {
       element: <CreateAccount />,
     },
     {
-      element: <Header />,
+      element: <Layout />,
       children: [
         {
           path: "/",
@@ -62,7 +75,15 @@ function App() {
     },
   ]);
 
-  return element;
+  return (
+    <>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        {element}
+      </ThemeProvider>
+      <ToastContainer position="top-center" autoClose={2000} closeOnClick />
+    </>
+  );
 
   // return (
   //   <div className="App">

@@ -1,11 +1,11 @@
 import React from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import routes from "../Routes";
+import routes from "../../Routes";
 import styled, { css } from "styled-components";
 
 const Wrapper = styled.section`
   padding: 2px 0px;
-  background: papayawhip;
+  background: ${({ theme }) => theme.colors.header};
   > ul {
     display: flex;
     list-style: none;
@@ -22,8 +22,11 @@ const Wrapper = styled.section`
 const StyledLi = styled.li`
   list-style: none;
   padding: 10px;
-  & :hover {
-    color: red;
+
+  &:hover {
+    background-color: ${({ primary }) => (primary ? "#fff" : "#E38B06")};
+    color: #000;
+    cursor: pointer;
   }
   ${({ active }) =>
     active &&

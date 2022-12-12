@@ -31,22 +31,24 @@ export default function About() {
 
   return (
     <>
-      <div>
+      <div style={{ padding: "10px 0px" }}>
         <h1>This is the About page</h1>
         <h2> user data form the context data and user token {appToken}</h2>
+
+        <div> user name:::{userLogin.name}</div>
+        <ButtonDiv>
+          <Button
+            bg="#ff0099"
+            color="#000"
+            label="Logout"
+            onClick={() => {
+              setLocalUser();
+              setAppToken();
+              navigation("/login");
+            }}
+          />
+        </ButtonDiv>
       </div>
-      <div> user name:::{userLogin.name}</div>
-      <ButtonDiv>
-        <Button
-          primary="primary"
-          label="Logout"
-          onClick={() => {
-            setLocalUser();
-            setAppToken();
-            navigation("/login");
-          }}
-        />
-      </ButtonDiv>
     </>
   );
 }

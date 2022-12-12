@@ -1,4 +1,5 @@
 import React from "react";
+import Card from "../Component/Ui/Atoms/Card";
 
 export default function Details() {
   return (

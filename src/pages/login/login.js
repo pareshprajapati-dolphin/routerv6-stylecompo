@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { useAuth } from "../Component/store/AuthProvider";
-import Button from "../Component/Ui/Atoms/button";
-import Input from "../Component/Ui/Atoms/input";
-import { loginApi } from "../Api/apiService";
-import { useLocalStorage } from "../hook/useLocalStorage";
-import { useCookiesStorage } from "../hook/useCookiesStorage";
-import CheckBox from "../Component/Ui/Atoms/checkBox";
+import { useAuth } from "../../Component/store/AuthProvider";
+import Button from "../../Component/Ui/Atoms/button";
+import Input from "../../Component/Ui/Atoms/input";
+import { loginApi } from "../../Api/apiService";
+import { useLocalStorage } from "../../hook/useLocalStorage";
+import { useCookiesStorage } from "../../hook/useCookiesStorage";
+import CheckBox from "../../Component/Ui/Atoms/checkBox";
+import { toast } from "react-toastify";
 
 const StyledDiv = styled.div`
   display: block;
@@ -66,9 +67,11 @@ export default function Login() {
     if (data.status === 200) {
       setLocalUser(data.data);
       setAppToken(data?.data?.token);
-
+      toast.success(data.message);
       // login(data, data?.data?.token);
       navigation("/", { replace: true });
+    } else {
+      toast.error(data?.message);
     }
   };
 
@@ -131,17 +134,17 @@ export default function Login() {
             onChange={(e) => handleChange(e)}
           />
 
-          <div style={{ display: " flex " }}>
+          <div style={{ display: "flex", paddingTop: "10px" }}>
             <Button
+              bg="#ff0099"
+              color="#fff"
               label="Login"
-              primary="primary"
               onClick={(e) => {
                 handleSubmitt(e);
               }}
             />
             <Button
               label="Cancle"
-              varient="outline"
               onClick={() => {
                 console.log("_pp test click in cancle button");
               }}

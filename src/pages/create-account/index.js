@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import styled from "styled-components";
+import { signup } from "../../Api/apiService";
 import Button from "../../Component/Ui/Atoms/button";
 import CheckBox from "../../Component/Ui/Atoms/checkBox";
 import Input from "../../Component/Ui/Atoms/input";
@@ -30,8 +32,9 @@ export default function CreateAccount() {
   const [regiData, setRegiData] = useState({
     firstname: "",
     lastname: "",
-    password: "",
     email: "",
+    password: "",
+    password_confirmation: "",
     gender: "mr",
     termCondi: false,
   });
@@ -49,9 +52,22 @@ export default function CreateAccount() {
         [name]: value,
       });
   };
-  const handleSubmitt = (e) => {
+  const handleSubmitt = async (e) => {
     e.preventDefault();
-    console.log("_pp test data::", regiData);
+
+    const formData = new FormData();
+
+    Object.keys(regiData).forEach((key) => {
+      formData.append(key, regiData[key]);
+    });
+
+    const data = await signup(formData);
+    if (data.status === 200) {
+      toast.success(data.message);
+      navigator("/login");
+    } else {
+      toast.error(data.message);
+    }
   };
 
   return (
@@ -100,7 +116,16 @@ export default function CreateAccount() {
               handleChange(e);
             }}
           />
-
+          <Input
+            id="password_confirmation"
+            name="password_confirmation"
+            type="password"
+            value={regiData.password_confirmation}
+            labelName="Retype-Password"
+            onChange={(e) => {
+              handleChange(e);
+            }}
+          />
           <Select
             labelName="Gender"
             name="gender"
@@ -125,10 +150,11 @@ export default function CreateAccount() {
             />
           </div>
 
-          <div style={{ display: " flex " }}>
+          <div style={{ display: " flex ", padding: "10px 0px" }}>
             <Button
               label="SignUp"
-              primary="primary"
+              bg="#ff0099"
+              color="#fff"
               onClick={(e) => {
                 handleSubmitt(e);
               }}
@@ -136,6 +162,14 @@ export default function CreateAccount() {
             <Button
               label="Cancle"
               varient="outline"
+              onClick={() => {
+                navigator("/login");
+              }}
+            />
+            <Button
+              varient="outline"
+              disabled
+              processingIcon={true}
               onClick={() => {
                 navigator("/login");
               }}
