@@ -1,27 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
-// import App from "./App";
+// import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter, RouterProvider } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 // import routes from "./newRoutes";
 import App from "./App";
-import { AuthProvider } from "./Component/store/AuthProvider";
-// import routes from "./routes";
+import "react-toastify/dist/ReactToastify.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    {/* <AuthProvider> */}
     <BrowserRouter>
       <App />
     </BrowserRouter>
-    {/* </AuthProvider> */}
-    {/* <RouterProvider router={routes} /> */}
   </React.StrictMode>
 
   // <React.StrictMode>
   //   <BrowserRouter>
+  // <RouterProvider router={routes} />
   //     <App />
   //   </BrowserRouter>
   // </React.StrictMode>

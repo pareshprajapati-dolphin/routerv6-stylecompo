@@ -6,6 +6,12 @@ export const loginApi = (data) =>
     .then((res) => handleResponse(res))
     .catch((err) => handleErrorResponse(err));
 
+export const signup = (data) =>
+  api()
+    .post("/signup", data)
+    .then((res) => handleResponse(res))
+    .catch((err) => handleErrorResponse(err));
+
 const handleResponse = (res) => {
   const { data } = res;
   if (res.status !== 200 || res.data.error) {
