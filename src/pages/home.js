@@ -30,6 +30,7 @@ export default function Home() {
   // const handleClick = () => {
   //   localStorage.setItem("userData", "test123");
   // };
+
   return (
     <>
       <div style={{ padding: "10px" }}>
@@ -41,6 +42,7 @@ export default function Home() {
           <Card key={index} item={item} />
         ))}
       </Container>
+
       {/* <Footer /> */}
 
       {/* <h2>thie the api token::: {appToken}</h2>

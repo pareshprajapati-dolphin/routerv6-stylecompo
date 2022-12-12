@@ -13,6 +13,11 @@ const routes = [
   },
   {
     enabled: true,
+    path: "/service",
+    navbar: "Service",
+  },
+  {
+    enabled: true,
     path: "/contact",
     navbar: "Contact",
   },
@@ -21,11 +26,11 @@ const routes = [
     path: "/details",
     navbar: "details",
   },
-  {
-    enabled: true,
-    path: "/login",
-    navbar: "Signin",
-  },
+  // {
+  //   enabled: true,
+  //   path: "/login",
+  //   navbar: "Signin",
+  // },
 ];
 
 export default routes.filter((route) => route.enabled);

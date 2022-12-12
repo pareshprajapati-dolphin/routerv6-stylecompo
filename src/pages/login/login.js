@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useAuth } from "../../Component/store/AuthProvider";
 import Button from "../../Component/Ui/Atoms/button";
-import Input from "../../Component/Ui/Atoms/input";
+import { Input, PasswordInput } from "../../Component/Ui/Atoms/input";
 import { loginApi } from "../../Api/apiService";
 import { useLocalStorage } from "../../hook/useLocalStorage";
 import { useCookiesStorage } from "../../hook/useCookiesStorage";
@@ -22,11 +22,14 @@ const StyledH1 = styled.h1`
   display: flex;
   padding: 10px;
 `;
-const StyledForm = styled.form`
+const Form = styled.form`
+  margin: 0 auto;
   width: 100%;
-  margin-left: 10px;
-  margin-right: auto;
-  display: inline-block;
+  max-width: 500px;
+  padding: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 `;
 
 export default function Login() {
@@ -40,6 +43,7 @@ export default function Login() {
 
   const [localUser, setLocalUser] = useLocalStorage("userdata");
   const [appToken, setAppToken] = useCookiesStorage("appToken");
+  const [loading, setLoading] = useState(false);
 
   let date = "2022-12-04T08:55:53.000000Z";
 
@@ -61,17 +65,19 @@ export default function Login() {
 
   const handleSubmitt = async (e) => {
     e.preventDefault();
-    console.log("-- test :", loginData);
 
+    setLoading(true);
     const data = await loginApi(loginData);
     if (data.status === 200) {
       setLocalUser(data.data);
       setAppToken(data?.data?.token);
       toast.success(data.message);
+      setLoading(false);
       // login(data, data?.data?.token);
       navigation("/", { replace: true });
     } else {
       toast.error(data?.message);
+      setLoading(false);
     }
   };
 
@@ -88,8 +94,7 @@ export default function Login() {
   return (
     <>
       <StyledDiv>
-        <StyledH1>Login page</StyledH1>
-        <div style={{ padding: "10px" }}>
+        {/* <div style={{ padding: "10px" }}>
           {moment(date).format("ddd, DD/MM/YYYY")}
         </div>
         <div style={{ padding: "10px" }}>
@@ -101,9 +106,10 @@ export default function Login() {
             // lastWeek: "[Last] dddd",
             sameElse: "ddd DD/MM/YYYY  hh:mm",
           })}
-        </div>
+        </div> */}
 
-        <StyledForm>
+        <Form>
+          <StyledH1>Login page</StyledH1>
           <Input
             id="email"
             name="email"
@@ -114,7 +120,7 @@ export default function Login() {
               handleChange(e);
             }}
           />
-          <Input
+          <PasswordInput
             id="password"
             name="password"
             type="password"
@@ -135,14 +141,18 @@ export default function Login() {
           />
 
           <div style={{ display: "flex", paddingTop: "10px" }}>
-            <Button
-              bg="#ff0099"
-              color="#fff"
-              label="Login"
-              onClick={(e) => {
-                handleSubmitt(e);
-              }}
-            />
+            {!loading ? (
+              <Button
+                bg="#ff0099"
+                color="#fff"
+                label="Login"
+                onClick={(e) => {
+                  handleSubmitt(e);
+                }}
+              />
+            ) : (
+              <Button disabled processingIcon={true} />
+            )}
             <Button
               label="Cancle"
               onClick={() => {
@@ -154,7 +164,7 @@ export default function Login() {
             create new account?
             <Link to="/create-account"> Sign up</Link>
           </StyledH1>
-        </StyledForm>
+        </Form>
       </StyledDiv>
     </>
   );
