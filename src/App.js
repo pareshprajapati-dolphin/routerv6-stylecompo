@@ -1,11 +1,12 @@
 import { useRoutes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { ThemeProvider } from "styled-components";
+import { Provider } from "react-redux";
 import "./App.css";
 import Layout from "./Component/Layout";
 import About from "./pages/about";
 import Service from "./pages/services";
-import Contact from "./pages/contact";
+import Contact from "./pages/contact/contact";
 import CreateAccount from "./pages/create-account";
 import Details from "./pages/details";
 import EditContact from "./pages/editContact";
@@ -14,6 +15,7 @@ import ErrorPage from "./pages/errorPage";
 import Home from "./pages/home";
 import Login from "./pages/login/login";
 import GlobalStyles from "./style/GlobalStyle";
+import { store } from "./redux/store";
 
 const theme = {
   colors: {
@@ -37,10 +39,15 @@ function App() {
       element: <CreateAccount />,
     },
     {
+      path: "*",
+      element: <ErrorPage />,
+    },
+    {
       element: <Layout />,
       children: [
         {
           path: "/",
+
           element: <Home />,
           errorElement: <ErrorPage />,
         },
@@ -84,11 +91,13 @@ function App() {
 
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <GlobalStyles />
-        {element}
-      </ThemeProvider>
-      <ToastContainer position="top-center" autoClose={2000} closeOnClick />
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <GlobalStyles />
+          {element}
+        </ThemeProvider>
+      </Provider>
+      <ToastContainer position="top-right" autoClose={2000} closeOnClick />
     </>
   );
 

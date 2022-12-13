@@ -10,6 +10,8 @@ import { useLocalStorage } from "../../hook/useLocalStorage";
 import { useCookiesStorage } from "../../hook/useCookiesStorage";
 import CheckBox from "../../Component/Ui/Atoms/checkBox";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { addNewKey, addUser } from "../../redux/reducer/userReducer";
 
 const StyledDiv = styled.div`
   display: block;
@@ -44,12 +46,12 @@ export default function Login() {
   const [localUser, setLocalUser] = useLocalStorage("userdata");
   const [appToken, setAppToken] = useCookiesStorage("appToken");
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   let date = "2022-12-04T08:55:53.000000Z";
 
   const handleChange = (e) => {
     const { name, value, checked, type } = e.target;
-
     if (type === "checkbox") {
       setLoginData({
         ...loginData,
@@ -73,6 +75,8 @@ export default function Login() {
       setAppToken(data?.data?.token);
       toast.success(data.message);
       setLoading(false);
+      dispatch(addUser(data.data));
+
       // login(data, data?.data?.token);
       navigation("/", { replace: true });
     } else {
@@ -81,10 +85,14 @@ export default function Login() {
     }
   };
 
+  // const ObjectData = {
+  //   test: "test",
+  // };
   useEffect(() => {
     if (localUser !== undefined && appToken !== undefined) {
       navigation("/");
     } else {
+      // dispatch(addNewKey(ObjectData));
       setAppToken();
       setLocalUser();
       navigation("/login");

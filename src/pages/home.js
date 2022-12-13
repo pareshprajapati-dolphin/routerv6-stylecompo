@@ -24,8 +24,10 @@ export default function Home() {
   useEffect(() => {
     if (!localUser || !appToken) {
       navigation("/login");
-    } else setUser(localUser);
-  }, [appToken, localUser, navigation]);
+    } else {
+      setUser(localUser);
+    }
+  }, []);
 
   // const handleClick = () => {
   //   localStorage.setItem("userData", "test123");

@@ -16,6 +16,7 @@ const routes = [
     path: "/service",
     navbar: "Service",
   },
+
   {
     enabled: true,
     path: "/contact",

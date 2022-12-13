@@ -5,6 +5,9 @@ import styled, { css } from "styled-components";
 
 const Wrapper = styled.section`
   padding: 2px 0px;
+  position: sticky;
+  top: 0px;
+  z-index: 1;
   background: ${({ theme }) => theme.colors.header};
   > ul {
     display: flex;
@@ -16,6 +19,7 @@ const Wrapper = styled.section`
   }
   a {
     text-decoration: none;
+    color: #003333;
   }
 `;
 
@@ -27,11 +31,16 @@ const StyledLi = styled.li`
     background-color: ${({ primary }) => (primary ? "#fff" : "#E38B06")};
     color: #000;
     cursor: pointer;
+    border-bottom: 2px solid black;
+    transform: scale(0.98);
   }
   ${({ active }) =>
     active &&
     css`
       background-color: rgb(173 163 223);
+      border-radius: 50px;
+      border: none;
+      box-shadow: 0 0 10px rgb(0 0 0 / 15%);
     `}
 `;
 
@@ -47,6 +56,9 @@ export default function Header() {
               <Link to={router.path}>{router.navbar}</Link>
             </StyledLi>
           ))}
+          {/* <div style={{ position: "right" }}>
+            <button>Logout</button>
+          </div> */}
         </ul>
       </Wrapper>
       <Outlet />
