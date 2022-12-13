@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import styled from "styled-components";
@@ -7,6 +8,7 @@ import Button from "../../Component/Ui/Atoms/button";
 import CheckBox from "../../Component/Ui/Atoms/checkBox";
 import { Input, PasswordInput } from "../../Component/Ui/Atoms/input";
 import Select from "../../Component/Ui/Atoms/select";
+import { addUser } from "../../redux/reducer/userReducer";
 
 const StyledH1 = styled.h1`
   display: flex;
@@ -24,6 +26,7 @@ const StyledForm = styled.form`
 
 export default function CreateAccount() {
   const navigator = useNavigate();
+  const dispatch = useDispatch();
   const [regiData, setRegiData] = useState({
     firstname: "",
     lastname: "",
@@ -57,15 +60,18 @@ export default function CreateAccount() {
       formData.append(key, regiData[key]);
     });
     setLoading(true);
-    const data = await signup(formData);
-    if (data.status === 200) {
-      setLoading(false);
-      toast.success(data.message);
-      navigator("/login");
-    } else {
-      setLoading(false);
-      toast.error(data.message);
-    }
+    dispatch(addUser(regiData));
+    setLoading(false);
+
+    // const data = await signup(formData);
+    // if (data.status === 200) {
+    //   setLoading(false);
+    //   toast.success(data.message);
+    // } else {
+    //   setLoading(false);
+    //   toast.error(data.message);
+    // }
+    //  navigator("/login");
   };
 
   return (

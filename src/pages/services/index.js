@@ -63,7 +63,7 @@ export default function Service() {
     <>
       <h2 className="common-heading">Our Services</h2>
       {loading ? (
-        "Loding...."
+        "Loading...."
       ) : (
         <>
           <Wrapper>
