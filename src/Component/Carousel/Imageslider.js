@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { SliderData } from "./SliderData";
 import styled from "styled-components";
+import LeftArrow from "../Icons/LeftArrow";
+import RightArrow from "../Icons/RightArrow";
 
 const StyledContainer = styled.section`
   position: relative;
@@ -18,7 +20,7 @@ const StyledImage = styled.img`
   min-width: 100%;
 `;
 
-const RightArrow = styled.button`
+const RightArrowButton = styled.button`
   position: absolute;
   top: 50%;
   right: 32px;
@@ -27,7 +29,7 @@ const RightArrow = styled.button`
   cursor: pointer;
   user-select: none;
 `;
-const LeftArrow = styled.button`
+const LeftArrowButton = styled.button`
   position: absolute;
   top: 50%;
   left: 32px;
@@ -80,10 +82,12 @@ const ImageSlider = ({ slides }) => {
   return (
     <>
       <StyledContainer>
-        <LeftArrow onClick={prevSlide}>Previos</LeftArrow>
-        <RightArrow className="right-arrow" onClick={nextSlide}>
-          Next
-        </RightArrow>
+        <LeftArrowButton onClick={prevSlide}>
+          <LeftArrow />
+        </LeftArrowButton>
+        <RightArrowButton className="right-arrow" onClick={nextSlide}>
+          <RightArrow />
+        </RightArrowButton>
         {SliderData.map((slide, index) => {
           return (
             <StyledDiv currentSlide={current * -100} key={index}>

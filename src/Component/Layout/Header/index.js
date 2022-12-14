@@ -30,17 +30,14 @@ const StyledLi = styled.li`
   &:hover {
     background-color: ${({ primary }) => (primary ? "#fff" : "#E38B06")};
     color: #000;
+    border-radius: 30px;
     cursor: pointer;
-    border-bottom: 2px solid black;
-    transform: scale(0.98);
   }
   ${({ active }) =>
     active &&
     css`
       background-color: rgb(173 163 223);
-      border-radius: 50px;
-      border: none;
-      box-shadow: 0 0 10px rgb(0 0 0 / 15%);
+      border-radius: 30px;
     `}
 `;
 

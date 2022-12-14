@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import useLocalStorage from "../../hook/useLocalStorage";
 import { useCookiesStorage } from "../../hook/useCookiesStorage";
@@ -47,6 +47,26 @@ export default function Contact() {
     });
   };
 
+  const handleSubmitt = (e) => {
+    e.preventDefault();
+    console.log("_pp test conatct::", contactData);
+    setContactData({
+      firstname: "",
+      lastname: "",
+      email: "",
+    });
+  };
+
+  const disablButton = useMemo(() => {
+    if (
+      contactData.firstname.length > 0 &&
+      contactData.lastname.length > 0 &&
+      contactData.email.length > 0
+    )
+      return false;
+    else return true;
+  }, [contactData]);
+
   return (
     <>
       <div>
@@ -88,15 +108,22 @@ export default function Contact() {
           }}
         />
 
-        <div style={{ display: " flex ", padding: "10px 0px" }}>
+        <div
+          style={{
+            display: " flex ",
+            padding: "10px 0px",
+            justifyContent: "space-between",
+          }}
+        >
           {!loading ? (
             <Button
               label="SignUp"
               bg="#ff0099"
               color="#fff"
-              // onClick={(e) => {
-              //   handleSubmitt(e);
-              // }}
+              disabled={disablButton}
+              onClick={(e) => {
+                handleSubmitt(e);
+              }}
             />
           ) : (
             <Button disabled processingIcon={true} />
@@ -104,8 +131,6 @@ export default function Contact() {
           <Button
             label="Cancle"
             onClick={(e) => {
-              console.log("_pp test");
-              e.preventDefault();
               navigator("/");
             }}
           />

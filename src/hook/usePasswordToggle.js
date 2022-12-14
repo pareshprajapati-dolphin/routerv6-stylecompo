@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { EyeOpen, EyeClose } from "../Component/Icons/eyeOpen";
 
 const PasswordIcon = styled.div`
-  position: absolute;
-  width: 10%;
+  float: right;
+  margin-right: 10px;
+  margin-top: -30px;
+  position: relative;
+  cursor: pointer;
 `;
 
 export default function usePasswordToggle() {
@@ -11,11 +15,7 @@ export default function usePasswordToggle() {
 
   const Icon = (
     <PasswordIcon onClick={() => setVisible((visible) => !visible)}>
-      {visible ? (
-        <img src="/../images/hide.png" alt="..." />
-      ) : (
-        <img src="/../images/eye.png" alt="..." />
-      )}
+      {visible ? <EyeOpen /> : <EyeClose />}
     </PasswordIcon>
   );
 

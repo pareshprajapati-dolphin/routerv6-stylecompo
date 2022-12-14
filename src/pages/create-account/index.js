@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -63,16 +63,28 @@ export default function CreateAccount() {
     dispatch(addUser(regiData));
     setLoading(false);
 
-    // const data = await signup(formData);
-    // if (data.status === 200) {
-    //   setLoading(false);
-    //   toast.success(data.message);
-    // } else {
-    //   setLoading(false);
-    //   toast.error(data.message);
-    // }
-    //  navigator("/login");
+    const data = await signup(formData);
+    if (data.status === 200) {
+      setLoading(false);
+      navigator("/login");
+      toast.success(data.message);
+    } else {
+      setLoading(false);
+      toast.error(data.message);
+    }
   };
+
+  const disableButton = useMemo(() => {
+    if (
+      regiData.firstname.length > 0 &&
+      regiData.lastname.length > 0 &&
+      regiData.email.length > 0 &&
+      regiData.password.length > 0 &&
+      regiData.termCondi
+    )
+      return false;
+    else return true;
+  }, [regiData]);
 
   return (
     <>
@@ -159,6 +171,7 @@ export default function CreateAccount() {
               label="SignUp"
               bg="#ff0099"
               color="#fff"
+              disabled={disableButton}
               onClick={(e) => {
                 handleSubmitt(e);
               }}

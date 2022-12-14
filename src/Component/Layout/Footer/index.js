@@ -38,6 +38,13 @@ export const Flex = styled.div`
     text-align: center;
   }
 `;
+
+export const SocialDiv = styled.div`
+  display: flex;
+  > div > i {
+    padding: 0px 3px;
+  }
+`;
 export default function Footer() {
   return (
     <StyledFooter>
@@ -63,6 +70,16 @@ export default function Footer() {
             <li>Contact Us</li>
           </ul>
         </Flex>
+        <div className="footer-social">
+          <h3>Follows Us</h3>
+          <SocialDiv>
+            <div>
+              <i className="bi bi-facebook"></i>
+              <i className="bi bi-instagram"></i>
+              <i className="bi bi-youtube"></i>
+            </div>
+          </SocialDiv>
+        </div>
 
         <p>&copy; 2021 Huddle. All rights reserved</p>
       </Container>
