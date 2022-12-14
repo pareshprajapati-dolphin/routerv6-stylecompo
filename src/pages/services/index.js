@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Button from "../../Component/Ui/Atoms/button";
+import useFullpageLoader from "../../hook/useFullpageLoader";
 
 const Wrapper = styled.div`
   padding: 40px;
@@ -46,15 +47,15 @@ const Wrapper = styled.div`
 
 export default function Service() {
   const [serviceData, setServiceData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loader, showLoader, hideLoader] = useFullpageLoader();
 
   useEffect(() => {
     async function fetchData() {
-      setLoading(true);
+      showLoader();
       const data = await axios.get("https://dummyjson.com/products");
-      console.log("_pp test data ::", data.data.products);
+      // console.log("_pp test data ::", data.data.products);
       setServiceData(data.data.products);
-      setLoading(false);
+      hideLoader();
     }
     fetchData();
   }, []);
@@ -62,27 +63,22 @@ export default function Service() {
   return (
     <>
       <h2 className="common-heading">Our Services</h2>
-      {loading ? (
-        "Loading...."
-      ) : (
-        <>
-          <Wrapper>
-            {serviceData.map((curElem) => {
-              return (
-                <div>
-                  <img src={curElem.images[0]} alt="...." />
-                  <div>
-                    <p>{curElem.description}</p>
-                    <div style={{ paddingTop: "20px" }}>
-                      <Button label="Read More" bg="skyblue" disabled />
-                    </div>
-                  </div>
+      {loader}
+      <Wrapper>
+        {serviceData.map((curElem) => {
+          return (
+            <div>
+              <img src={curElem.images[0]} alt="...." />
+              <div>
+                <p>{curElem.description}</p>
+                <div style={{ paddingTop: "20px" }}>
+                  <Button label="Read More" bg="skyblue" disabled />
                 </div>
-              );
-            })}
-          </Wrapper>
-        </>
-      )}
+              </div>
+            </div>
+          );
+        })}
+      </Wrapper>
     </>
   );
 }

@@ -32,18 +32,43 @@ const InputEl = styled.input`
 const Label = styled.label`
   width: 100px;
   font-size: 20px;
+  margin-bottom: 0.5rem;
 `;
 
-function Input({ type, name, labelName, id, onChange, value }) {
+function Input({
+  type,
+  name,
+  labelName,
+  id,
+  onChange,
+  value,
+  onBlur,
+  onFocus,
+}) {
   return (
     <ContainerEl>
       <Label htmlFor={id}>{labelName}</Label>
-      <InputEl name={name} type={type} onChange={onChange} value={value} />
+      <InputEl
+        name={name}
+        type={type}
+        onChange={onChange}
+        value={value}
+        onBlur={onBlur}
+      />
     </ContainerEl>
   );
 }
 
-function PasswordInput({ type, name, labelName, id, onChange, value }) {
+function PasswordInput({
+  type,
+  name,
+  labelName,
+  id,
+  onChange,
+  value,
+  onBlur,
+  onFocus,
+}) {
   const [PasswordInputType, ToggleIcon] = PasswordToggle();
   return (
     <ContainerEl>
@@ -53,8 +78,9 @@ function PasswordInput({ type, name, labelName, id, onChange, value }) {
         type={PasswordInputType}
         onChange={onChange}
         value={value}
+        onBlur={onBlur}
       />
-      {/* {ToggleIcon} */}
+      {ToggleIcon}
     </ContainerEl>
   );
 }

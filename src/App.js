@@ -22,7 +22,7 @@ const theme = {
     header: "#ebfbff",
     body: "#fff",
     footer: "#003333",
-    disabled: "skyblue",
+    disabled: "#707070",
     bg: "rgb(249 249 255)",
   },
   mobile: "768px",
