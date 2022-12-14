@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import moment from "moment";
+import React, { useEffect, useMemo, useState } from "react";
+// import moment from "moment";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { useAuth } from "../../Component/store/AuthProvider";
+// import { useAuth } from "../../Component/store/AuthProvider";
 import Button from "../../Component/Ui/Atoms/button";
 import { Input, PasswordInput } from "../../Component/Ui/Atoms/input";
 import { loginApi } from "../../Api/apiService";
@@ -46,6 +46,7 @@ export default function Login() {
   const [localUser, setLocalUser] = useLocalStorage("userdata");
   const [appToken, setAppToken] = useCookiesStorage("appToken");
   const [loading, setLoading] = useState(false);
+  const [emailError, setEmailError] = useState();
   const dispatch = useDispatch();
 
   let date = "2022-12-04T08:55:53.000000Z";
@@ -67,7 +68,6 @@ export default function Login() {
 
   const handleSubmitt = async (e) => {
     e.preventDefault();
-
     setLoading(true);
     const data = await loginApi(loginData);
     if (data.status === 200) {
@@ -76,18 +76,21 @@ export default function Login() {
       toast.success(data.message);
       setLoading(false);
       dispatch(addUser(data.data));
+      navigation("/", { replace: true });
 
       // login(data, data?.data?.token);
-      navigation("/", { replace: true });
     } else {
       toast.error(data?.message);
       setLoading(false);
     }
   };
 
-  // const ObjectData = {
-  //   test: "test",
-  // };
+  const disableButton = useMemo(() => {
+    if (loginData.email.length > 0 && loginData.password.length > 0) {
+      return false;
+    } else return true;
+  }, [loginData]);
+
   useEffect(() => {
     if (localUser !== undefined && appToken !== undefined) {
       navigation("/");
@@ -98,6 +101,23 @@ export default function Login() {
       navigation("/login");
     }
   }, [appToken, localUser, navigation]);
+  const [passwordError, setPasswordError] = useState();
+
+  const handleBlur = (e) => {
+    // if (e.target.value === "") {
+    //   if (e.target.name === "email") {
+    //     setEmailError("Email cannot be blank.");
+    //   } else if (e.target.name === "password") {
+    //     setPasswordError("Password cannot be blank.");
+    //   }
+    // } else {
+    //   if (e.target.name === "email") {
+    //     setEmailError("");
+    //   } else if (e.target.name === "password") {
+    //     setPasswordError("");
+    //   }
+    // }
+  };
 
   return (
     <>
@@ -117,7 +137,7 @@ export default function Login() {
         </div> */}
 
         <Form>
-          <StyledH1>Login page</StyledH1>
+          <StyledH1>Mitesh</StyledH1>
           <Input
             id="email"
             name="email"
@@ -127,7 +147,15 @@ export default function Login() {
             onChange={(e) => {
               handleChange(e);
             }}
+            onBlur={(e) => {
+              handleBlur(e);
+            }}
           />
+          {emailError && (
+            <span style={{ color: "red", padding: "5px 0px" }}>
+              {emailError}
+            </span>
+          )}
           <PasswordInput
             id="password"
             name="password"
@@ -137,7 +165,15 @@ export default function Login() {
             onChange={(e) => {
               handleChange(e);
             }}
+            onBlur={(e) => {
+              handleBlur(e);
+            }}
           />
+          {passwordError && (
+            <span style={{ color: "red", padding: "5px 0px" }}>
+              {passwordError}
+            </span>
+          )}
 
           <CheckBox
             id="isChecked"
@@ -154,6 +190,7 @@ export default function Login() {
                 bg="#ff0099"
                 color="#fff"
                 label="Login"
+                disabled={disableButton}
                 onClick={(e) => {
                   handleSubmitt(e);
                 }}
