@@ -12,6 +12,7 @@ import CheckBox from "../../Component/Ui/Atoms/checkBox";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { addNewKey, addUser } from "../../redux/reducer/userReducer";
+import { useTranslation } from "react-i18next";
 
 const StyledDiv = styled.div`
   display: block;
@@ -37,6 +38,7 @@ const Form = styled.form`
 export default function Login() {
   // const { login, user, userToken } = useAuth();
   const navigation = useNavigate();
+  const { t } = useTranslation();
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -86,7 +88,11 @@ export default function Login() {
   };
 
   const disableButton = useMemo(() => {
-    if (loginData.email.length > 0 && loginData.password.length > 0) {
+    if (
+      loginData.email.length > 0 &&
+      loginData.password.length > 0 &&
+      loginData.isChecked
+    ) {
       return false;
     } else return true;
   }, [loginData]);
@@ -101,6 +107,7 @@ export default function Login() {
       navigation("/login");
     }
   }, [appToken, localUser, navigation]);
+
   const [passwordError, setPasswordError] = useState();
 
   const handleBlur = (e) => {
@@ -137,13 +144,13 @@ export default function Login() {
         </div> */}
 
         <Form>
-          <StyledH1>Mitesh</StyledH1>
+          <StyledH1>Login Page</StyledH1>
           <Input
             id="email"
             name="email"
             type="text"
             value={loginData.email}
-            labelName="Email Address"
+            labelName={t("labels.email_address")}
             onChange={(e) => {
               handleChange(e);
             }}
@@ -161,7 +168,7 @@ export default function Login() {
             name="password"
             type="password"
             value={loginData.password}
-            labelName="Password"
+            labelName={t("labels.password")}
             onChange={(e) => {
               handleChange(e);
             }}

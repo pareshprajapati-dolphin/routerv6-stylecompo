@@ -47,7 +47,6 @@ function App() {
       children: [
         {
           path: "/",
-
           element: <Home />,
           errorElement: <ErrorPage />,
         },

@@ -1,0 +1,16 @@
+{
+  "app_title": "Titre",
+  "language": "Langue",
+  "welcome_message": "Bienvenue",
+  "days_since_release": "ça fait {{number_of_days}} jours depuis la sortie de cette vidéo",
+  "labels": {
+    "home": "Home",
+    "about": "About",
+    "service": "Service 1",
+    "contact": "Contact",
+    "email_address": "Adresse e-mail",
+    "password": "le mot de passe",
+    "our_services": "Nos services",
+    "contact_title": "Ceci est la page de contact"
+  }
+}

@@ -66,7 +66,7 @@ export default function About() {
               <NavLink to="/contact"> hire me </NavLink>
             </Button> */}
           </div>
-          <Button
+          {/* <Button
             bg="#ff0099"
             color="#000"
             label="Logout"
@@ -75,7 +75,7 @@ export default function About() {
               setAppToken();
               navigation("/login");
             }}
-          />
+          /> */}
         </div>
       </Wrapper>
 

@@ -5,6 +5,7 @@ import { useCookiesStorage } from "../../hook/useCookiesStorage";
 import styled from "styled-components";
 import { Input } from "../../Component/Ui/Atoms/input";
 import Button from "../../Component/Ui/Atoms/button";
+import { useTranslation } from "react-i18next";
 
 const StyledH1 = styled.h1`
   display: flex;
@@ -21,6 +22,7 @@ const StyledForm = styled.form`
 `;
 export default function Contact() {
   const navigator = useNavigate();
+  const { t } = useTranslation();
 
   const [appToken, setAppToken] = useCookiesStorage("appToken");
   const [localUser, setLocalUser] = useLocalStorage("userdata");
@@ -70,7 +72,7 @@ export default function Contact() {
   return (
     <>
       <div>
-        <h1>This is the contact page</h1>
+        <h1>{t("labels.contact_title")}</h1>
         <NavLink to={`${4}`}> edit contact</NavLink>
       </div>
 
@@ -101,7 +103,7 @@ export default function Contact() {
           id="email"
           name="email"
           type="text"
-          labelName="Email Address"
+          labelName={t("labels.email_address")}
           value={contactData.email}
           onChange={(e) => {
             handleChange(e);
