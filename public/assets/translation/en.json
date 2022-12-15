@@ -1,0 +1,23 @@
+{
+  "app_title": "Title",
+  "language": "Language",
+  "welcome_message": "Welcome",
+  "days_since_release": "it's been {{number_of_days}} days since this video was released",
+  "labels": {
+    "home": "Home",
+    "about": "About",
+    "service": "Service",
+    "contact": "Contact",
+    "email_address": "Email Address",
+    "password": "Password",
+    "our_services": "Our Services",
+    "contact_title": "This is the contact page"
+  },
+  "contents": {
+    "title": {
+      "grow_together": "Grow Together",
+      "flowing_conversations": "Flowing Conversations",
+      "your_users": "Your Users"
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import Button from "../../Component/Ui/Atoms/button";
 import useFullpageLoader from "../../hook/useFullpageLoader";
@@ -48,6 +49,7 @@ const Wrapper = styled.div`
 export default function Service() {
   const [serviceData, setServiceData] = useState([]);
   const [loader, showLoader, hideLoader] = useFullpageLoader();
+  const { t } = useTranslation();
 
   useEffect(() => {
     async function fetchData() {
@@ -62,7 +64,7 @@ export default function Service() {
 
   return (
     <>
-      <h2 className="common-heading">Our Services</h2>
+      <h2 className="common-heading">{t("labels.our_services")}</h2>
       {loader}
       <Wrapper>
         {serviceData.map((curElem) => {
