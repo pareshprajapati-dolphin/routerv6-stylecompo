@@ -24,6 +24,11 @@ const routes = [
   },
   {
     enabled: true,
+    path: "/user",
+    navbar: "User",
+  },
+  {
+    enabled: true,
     path: "/details",
     navbar: "details",
   },

@@ -8,6 +8,7 @@ import { SliderData } from "../Component/Carousel/SliderData";
 import content from "../Component/Content";
 import Card from "../Component/Ui/Atoms/Card";
 import { useTranslation } from "react-i18next";
+import withAuth from "../Component/Hoc";
 
 export const Container = styled.div`
   width: 1000px;
@@ -15,8 +16,7 @@ export const Container = styled.div`
   padding: 0 20px;
   margin: 0 auto;
 `;
-
-export default function Home() {
+function Home() {
   const navigation = useNavigate();
   const [localUser] = useLocalStorage("userdata");
   const [appToken] = useCookiesStorage("appToken");
@@ -65,3 +65,5 @@ export default function Home() {
     </>
   );
 }
+
+export default Home;

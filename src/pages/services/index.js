@@ -51,14 +51,14 @@ export default function Service() {
   const [loader, showLoader, hideLoader] = useFullpageLoader();
   const { t } = useTranslation();
 
+  async function fetchData() {
+    showLoader();
+    const data = await axios.get("https://dummyjson.com/products");
+    console.log("_pp test data ::", data.data.products);
+    setServiceData(data.data.products);
+    hideLoader();
+  }
   useEffect(() => {
-    async function fetchData() {
-      showLoader();
-      const data = await axios.get("https://dummyjson.com/products");
-      // console.log("_pp test data ::", data.data.products);
-      setServiceData(data.data.products);
-      hideLoader();
-    }
     fetchData();
   }, []);
 
@@ -67,19 +67,17 @@ export default function Service() {
       <h2 className="common-heading">{t("labels.our_services")}</h2>
       {loader}
       <Wrapper>
-        {serviceData.map((curElem) => {
-          return (
+        {serviceData.map((curElem) => (
+          <div>
+            <img src={curElem.images[0]} alt="...." />
             <div>
-              <img src={curElem.images[0]} alt="...." />
-              <div>
-                <p>{curElem.description}</p>
-                <div style={{ paddingTop: "20px" }}>
-                  <Button label="Read More" bg="skyblue" disabled />
-                </div>
+              <p>{curElem.description}</p>
+              <div style={{ paddingTop: "20px" }}>
+                <Button label="Read More" bg="skyblue" disabled />
               </div>
             </div>
-          );
-        })}
+          </div>
+        ))}
       </Wrapper>
     </>
   );

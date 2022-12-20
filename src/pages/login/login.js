@@ -71,18 +71,20 @@ export default function Login() {
   const handleSubmitt = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const data = await loginApi(loginData);
-    if (data.status === 200) {
-      setLocalUser(data.data);
-      setAppToken(data?.data?.token);
-      toast.success(data.message);
-      setLoading(false);
-      dispatch(addUser(data.data));
-      navigation("/", { replace: true });
-
-      // login(data, data?.data?.token);
+    if (
+      loginData.email === "superadmin@dws.com" &&
+      loginData.password === "admin123"
+    ) {
+      let userdata = {
+        name: "suerpadmin",
+        email: "superadmin@dws.com",
+        token: "876|jshdgf",
+      };
+      setAppToken(userdata.token);
+      setLocalUser(userdata);
+      toast.success("user login successfully");
     } else {
-      toast.error(data?.message);
+      toast.error("email and password is invalid");
       setLoading(false);
     }
   };
