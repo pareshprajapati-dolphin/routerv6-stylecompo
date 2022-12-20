@@ -1,9 +1,9 @@
 import React, { useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+
 import styled from "styled-components";
-import { signup } from "../../Api/apiService";
+
 import Button from "../../Component/Ui/Atoms/button";
 import CheckBox from "../../Component/Ui/Atoms/checkBox";
 import { Input, PasswordInput } from "../../Component/Ui/Atoms/input";
@@ -62,16 +62,7 @@ export default function CreateAccount() {
     setLoading(true);
     dispatch(addUser(regiData));
     setLoading(false);
-
-    const data = await signup(formData);
-    if (data.status === 200) {
-      setLoading(false);
-      navigator("/login");
-      toast.success(data.message);
-    } else {
-      setLoading(false);
-      toast.error(data.message);
-    }
+    navigator("/login");
   };
 
   const disableButton = useMemo(() => {

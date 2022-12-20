@@ -16,6 +16,8 @@ import Home from "./pages/home";
 import Login from "./pages/login/login";
 import GlobalStyles from "./style/GlobalStyle";
 import { store } from "./redux/store";
+import User from "./pages/user";
+import EditUser from "./pages/user/editUser";
 
 const theme = {
   colors: {
@@ -48,7 +50,6 @@ function App() {
         {
           path: "/",
           element: <Home />,
-          errorElement: <ErrorPage />,
         },
         {
           path: "about",
@@ -61,6 +62,19 @@ function App() {
         {
           path: "details",
           element: <Details />,
+        },
+        {
+          path: "user",
+          children: [
+            {
+              index: true,
+              element: <User />,
+            },
+            {
+              path: ":id",
+              element: <EditUser />,
+            },
+          ],
         },
         {
           path: "contact",
