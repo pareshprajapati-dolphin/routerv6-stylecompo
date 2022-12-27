@@ -105,7 +105,7 @@ export default function About() {
 
     updateCharacters(items);
   };
-  console.log("_pp test ::", characters);
+  // console.log("_pp test ::", characters);
 
   useEffect(() => {
     // console.log("_pp test user", !localUser);
