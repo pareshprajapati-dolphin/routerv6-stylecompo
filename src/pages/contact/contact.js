@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { Input } from "../../Component/Ui/Atoms/input";
 import Button from "../../Component/Ui/Atoms/button";
 import { useTranslation } from "react-i18next";
+import { useDropzone } from "react-dropzone";
 
 const StyledH1 = styled.h1`
   display: flex;
@@ -20,6 +21,21 @@ const StyledForm = styled.form`
   flex-direction: column;
   position: relative;
 `;
+
+const StyleDiv = styled.div`
+  background: #eeeee4;
+  > div {
+    display: flex;
+    justify-content: center;
+  }
+`;
+
+const StyledImage = styled.img`
+  width: 50%;
+  margin: 10px 0px;
+  border-radius: 10px;
+`;
+
 export default function Contact() {
   const navigator = useNavigate();
   const { t } = useTranslation();
@@ -33,6 +49,25 @@ export default function Contact() {
     email: "",
   });
   const [loading, setLoading] = useState(false);
+  const [files, setFiles] = useState([]);
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: {
+      "image/png": [".png"],
+      "image/jpg": [".jpg"],
+      "image/jpeg": [".jpeg"],
+      "image/gif": [".gif"],
+    },
+    multiple: false,
+    onDrop: (acceptedFiles) => {
+      setFiles(
+        acceptedFiles.map((file) =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file),
+          })
+        )
+      );
+    },
+  });
 
   useEffect(() => {
     if (!localUser || !appToken) {
@@ -51,7 +86,6 @@ export default function Contact() {
 
   const handleSubmitt = (e) => {
     e.preventDefault();
-    console.log("_pp test conatct::", contactData);
     setContactData({
       firstname: "",
       lastname: "",
@@ -68,6 +102,12 @@ export default function Contact() {
       return false;
     else return true;
   }, [contactData]);
+
+  const thumbs = files.map((file) => (
+    <div key={file.name}>
+      <StyledImage src={file.preview} />
+    </div>
+  ));
 
   return (
     <>
@@ -109,6 +149,21 @@ export default function Contact() {
             handleChange(e);
           }}
         />
+        <StyleDiv {...getRootProps()}>
+          <input className="input-zone" {...getInputProps()} />
+          <div>
+            <div>
+              <p>Drag 'n' drop some files here, or click to select files</p>
+
+              <p>
+                <label className="cursor-pointer" for="files">
+                  Browse files
+                </label>
+              </p>
+            </div>
+          </div>
+        </StyleDiv>
+        <div>{thumbs}</div>
 
         <div
           style={{
@@ -120,6 +175,7 @@ export default function Contact() {
           {!loading ? (
             <Button
               label="SignUp"
+              type="submit"
               bg="#ff0099"
               color="#fff"
               disabled={disablButton}
@@ -132,6 +188,7 @@ export default function Contact() {
           )}
           <Button
             label="Cancle"
+            type="cancle"
             onClick={(e) => {
               navigator("/");
             }}

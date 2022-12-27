@@ -49,11 +49,13 @@ export default function User() {
   const navigation = useNavigate();
   const [loader, showLoader, hideLoader] = useFullpageLoader();
 
-  const [localUser] = useLocalStorage("userdata");
-  const [appToken] = useCookiesStorage("appToken");
+  const [localUser, setLocalUser] = useLocalStorage("userdata");
+  const [appToken, setAppToken] = useCookiesStorage("appToken");
 
   useEffect(() => {
     if (!localUser || !appToken) {
+      setAppToken();
+      setLocalUser();
       navigation("/login");
     }
   }, [appToken, localUser, navigation]);
@@ -99,6 +101,7 @@ export default function User() {
             name="page_per_item"
             onChange={(e) => {
               setPageSize(e.target.value);
+              setCurrentPage(1);
             }}
             optionList={[
               { value: 10, name: "10" },

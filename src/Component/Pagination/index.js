@@ -7,6 +7,7 @@ export default function Pagination({ total, onPageChange, page, pageSize }) {
     if (total > 0 && pageSize > 0) setTotalPage(Math.ceil(total / pageSize));
   }, [total, pageSize]);
 
+  console.log("total page::", totalPage);
   const pageNumber = useMemo(() => {
     const pages = [];
 

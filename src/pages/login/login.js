@@ -13,27 +13,7 @@ import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { addNewKey, addUser } from "../../redux/reducer/userReducer";
 import { useTranslation } from "react-i18next";
-
-const StyledDiv = styled.div`
-  display: block;
-  a {
-    text-decoration: none;
-  }
-`;
-
-const StyledH1 = styled.h1`
-  display: flex;
-  padding: 10px;
-`;
-const Form = styled.form`
-  margin: 0 auto;
-  width: 100%;
-  max-width: 500px;
-  padding: 1.3rem;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-`;
+import { StyledDiv, Form, StyledH1 } from "./loginStyle";
 
 export default function Login() {
   // const { login, user, userToken } = useAuth();

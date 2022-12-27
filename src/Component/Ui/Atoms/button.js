@@ -31,9 +31,11 @@ export default function Button({
   color,
   processingIcon,
   disabled,
+  type,
 }) {
   return (
     <ButtonContainer
+      type={type}
       onClick={onClick}
       bg={bg}
       color={color}
