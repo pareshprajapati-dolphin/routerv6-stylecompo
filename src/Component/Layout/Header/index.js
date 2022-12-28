@@ -6,7 +6,7 @@ import LogoutIcon from "../../Icons/logoutIcon";
 import useLocalStorage from "../../../hook/useLocalStorage";
 import { useCookiesStorage } from "../../../hook/useCookiesStorage";
 import { useTranslation } from "react-i18next";
-import Select from "../../Ui/Atoms/select";
+// import Select from "../../Ui/Atoms/select";
 import i18next from "i18next";
 import Cookies from "js-cookie";
 

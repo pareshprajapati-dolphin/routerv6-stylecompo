@@ -14,6 +14,10 @@ const GlobalStyles = createGlobalStyle`
         font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;
     }
+    mainDiv {
+        height: 1000px; 
+    position: relative;
+    }
   `;
 
 export default GlobalStyles;

@@ -2,44 +2,12 @@ import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import styled from "styled-components";
 import Pagination from "../../Component/Pagination";
 import Select from "../../Component/Ui/Atoms/select";
 import { useCookiesStorage } from "../../hook/useCookiesStorage";
 import useFullpageLoader from "../../hook/useFullpageLoader";
 import useLocalStorage from "../../hook/useLocalStorage";
-
-const TableContainer = styled.div`
-  table {
-    width: 100%;
-    height: 100%;
-    border-collapse: collapse;
-    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.08);
-  }
-  thead {
-    height: 64px;
-    background: #3c1742;
-  }
-  thead th {
-    font-size: 14px;
-    color: #ff0099;
-    text-align: left;
-    padding: 0px 30px;
-  }
-  tr {
-    height: 64px;
-    border-bottom: 2px solid grey;
-  }
-  tr td {
-    padding: 0px 30px;
-    border-bottom: 1px solid #3c1742;
-  }
-  @media only screen and (max-width: 992px) {
-    table {
-      white-space: nowrap;
-    }
-  }
-`;
+import { TableContainer } from "./edituser.css";
 
 export default function User() {
   const [user, setUser] = useState([]);

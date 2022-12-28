@@ -1,17 +1,17 @@
 import React, { useEffect, useMemo, useState } from "react";
 // import moment from "moment";
 import { Link, useNavigate } from "react-router-dom";
-import styled from "styled-components";
+// import styled from "styled-components";
 // import { useAuth } from "../../Component/store/AuthProvider";
 import Button from "../../Component/Ui/Atoms/button";
 import { Input, PasswordInput } from "../../Component/Ui/Atoms/input";
-import { loginApi } from "../../Api/apiService";
+// import { loginApi } from "../../Api/apiService";
 import { useLocalStorage } from "../../hook/useLocalStorage";
 import { useCookiesStorage } from "../../hook/useCookiesStorage";
 import CheckBox from "../../Component/Ui/Atoms/checkBox";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-import { addNewKey, addUser } from "../../redux/reducer/userReducer";
+// import { addNewKey, addUser } from "../../redux/reducer/userReducer";
 import { useTranslation } from "react-i18next";
 import { StyledDiv, Form, StyledH1 } from "./loginStyle";
 

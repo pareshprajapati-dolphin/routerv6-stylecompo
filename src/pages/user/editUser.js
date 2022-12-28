@@ -4,20 +4,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Button from "../../Component/Ui/Atoms/button";
 import { Input } from "../../Component/Ui/Atoms/input";
+import { StyledForm, StyledH1 } from "./edituser.css";
 
-const StyledH1 = styled.h1`
-  display: flex;
-  padding: 10px;
-`;
-const StyledForm = styled.form`
-  margin: 0 auto;
-  width: 100%;
-  max-width: 500px;
-  padding: 1.3rem;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-`;
 export default function EditUser() {
   const { id } = useParams();
   const [editData, setEditData] = useState({});
