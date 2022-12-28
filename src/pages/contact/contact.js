@@ -7,34 +7,7 @@ import { Input } from "../../Component/Ui/Atoms/input";
 import Button from "../../Component/Ui/Atoms/button";
 import { useTranslation } from "react-i18next";
 import { useDropzone } from "react-dropzone";
-
-const StyledH1 = styled.h1`
-  display: flex;
-  padding: 10px;
-`;
-const StyledForm = styled.form`
-  margin: 0 auto;
-  width: 100%;
-  max-width: 500px;
-  padding: 1.3rem;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-`;
-
-const StyleDiv = styled.div`
-  background: #eeeee4;
-  > div {
-    display: flex;
-    justify-content: center;
-  }
-`;
-
-const StyledImage = styled.img`
-  width: 50%;
-  margin: 10px 0px;
-  border-radius: 10px;
-`;
+import { StyledForm, StyledH1, StyledImage, StyleDiv } from "./contact.css";
 
 export default function Contact() {
   const navigator = useNavigate();
@@ -58,16 +31,34 @@ export default function Contact() {
       "image/gif": [".gif"],
     },
     multiple: false,
-    onDrop: (acceptedFiles) => {
-      setFiles(
-        acceptedFiles.map((file) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          })
-        )
-      );
+    onDrop: async (acceptedFiles) => {
+      setFiles(URL.createObjectURL(acceptedFiles[0]));
+      // setFiles(
+      //   acceptedFiles.map((file) =>
+      //     Object.assign(file, {
+      //       preview: URL.createObjectURL(file),
+      //     })
+      //   )
+      // );
+      const base64String = await convertBase64(acceptedFiles[0]);
+      console.log("base64::", base64String);
     },
   });
+
+  const convertBase64 = (file) => {
+    return new Promise((reslove, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+
+      fileReader.onload = () => {
+        reslove(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
 
   useEffect(() => {
     if (!localUser || !appToken) {
@@ -103,11 +94,11 @@ export default function Contact() {
     else return true;
   }, [contactData]);
 
-  const thumbs = files.map((file) => (
-    <div key={file.name}>
-      <StyledImage src={file.preview} />
-    </div>
-  ));
+  // const thumbs = files.map((file) => (
+  //   <div key={file}>
+  //     <StyledImage src={file} />
+  //   </div>
+  // ));
 
   return (
     <>
@@ -163,7 +154,10 @@ export default function Contact() {
             </div>
           </div>
         </StyleDiv>
-        <div>{thumbs}</div>
+        {/* <div>{thumbs}</div> */}
+        <div>
+          <StyledImage src={files} />
+        </div>
 
         <div
           style={{
