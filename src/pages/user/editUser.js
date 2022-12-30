@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import styled from "styled-components";
 import Button from "../../Component/Ui/Atoms/button";
 import { Input } from "../../Component/Ui/Atoms/input";
+import { Content } from "../../style/global.css.";
 import { StyledForm, StyledH1 } from "./edituser.css";
 
 export default function EditUser() {
@@ -16,7 +16,7 @@ export default function EditUser() {
       await axios
         .get(`https://api.instantwebtools.net/v1/passenger/${id}`)
         .then((res) => {
-          console.log("_pp test ", res?.data);
+          // console.log("_pp test ", res?.data);
           setEditData(res?.data);
         })
         .catch((err) => {
@@ -27,65 +27,67 @@ export default function EditUser() {
 
   return (
     <>
-      <StyledForm>
-        <StyledH1>Edit page</StyledH1>
-        <Input
-          id="firstname"
-          name="firstname"
-          type="text"
-          labelName="Passeger Name"
-          value={editData?.name}
-          onChange={(ev) => {
-            // handleChange(ev);
-          }}
-        />
-        <Input
-          id="lastname"
-          name="lastname"
-          type="text"
-          labelName="Trip"
-          value={editData?.trips}
-          onChange={(e) => {
-            // handleChange(e);
-          }}
-        />
-        <Input
-          id="lastname"
-          name="lastname"
-          type="text"
-          labelName="Airline Name"
-          value={editData?.name}
-          onChange={(e) => {
-            // handleChange(e);
-          }}
-        />
-
-        <div
-          style={{
-            display: " flex ",
-            padding: "10px 0px",
-            justifyContent: "space-between",
-          }}
-        >
-          <Button
-            label="SignUp"
-            bg="#ff0099"
-            color="#fff"
-            onClick={(e) => {
-              // handleSubmitt(e);
+      <Content>
+        <StyledForm>
+          <StyledH1>Edit page</StyledH1>
+          <Input
+            id="firstname"
+            name="firstname"
+            type="text"
+            labelName="Passeger Name"
+            value={editData?.name}
+            onChange={(ev) => {
+              // handleChange(ev);
+            }}
+          />
+          <Input
+            id="lastname"
+            name="lastname"
+            type="text"
+            labelName="Trip"
+            value={editData?.trips}
+            onChange={(e) => {
+              // handleChange(e);
+            }}
+          />
+          <Input
+            id="lastname"
+            name="lastname"
+            type="text"
+            labelName="Airline Name"
+            value={editData?.name}
+            onChange={(e) => {
+              // handleChange(e);
             }}
           />
 
-          <Button
-            label="Cancle"
-            type="cancle"
-            onClick={(e) => {
-              // e.preventDefault();
-              navigator("/user");
+          <div
+            style={{
+              display: " flex ",
+              padding: "10px 0px",
+              justifyContent: "space-between",
             }}
-          />
-        </div>
-      </StyledForm>
+          >
+            <Button
+              label="SignUp"
+              bg="#ff0099"
+              color="#fff"
+              onClick={(e) => {
+                // handleSubmitt(e);
+              }}
+            />
+
+            <Button
+              label="Cancle"
+              type="cancle"
+              onClick={(e) => {
+                // e.preventDefault();
+                navigator("/user");
+              }}
+            />
+          </div>
+        </StyledForm>
+      </Content>
     </>
   );
 }

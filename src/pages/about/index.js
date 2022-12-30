@@ -6,6 +6,7 @@ import styled from "styled-components";
 import useLocalStorage from "../../hook/useLocalStorage";
 import { useCookiesStorage } from "../../hook/useCookiesStorage";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { Content } from "../../style/global.css.";
 // import QuoteApp from "../../Component/DragDrop";
 
 // const ButtonDiv = styled.div`
@@ -17,7 +18,6 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 // `;
 
 const Wrapper = styled.section`
-  padding: 5rem 0;
   .section-hero-data {
     display: flex;
     flex-direction: column;
@@ -116,20 +116,21 @@ export default function About() {
 
   return (
     <>
-      <Wrapper>
-        <div className="container">
-          <div className="section-hero-data">
-            <p className="hero-top-data">THIS IS ME</p>
-            <h1 className="hero-heading">User Name ::-- {userLogin.name}</h1>
-            <p className="hero-para">
-              I'm {userLogin.name}. A Full stack Developer, youtuber and
-              freelancer. A Full stack Developer, youtuber and freelancer.
-            </p>
-            {/* <Button className="btn hireme-btn">
+      <Content>
+        <Wrapper>
+          <div className="container">
+            <div className="section-hero-data">
+              <p className="hero-top-data">THIS IS ME</p>
+              <h1 className="hero-heading">User Name ::-- {userLogin.name}</h1>
+              <p className="hero-para">
+                I'm {userLogin.name}. A Full stack Developer, youtuber and
+                freelancer. A Full stack Developer, youtuber and freelancer.
+              </p>
+              {/* <Button className="btn hireme-btn">
               <NavLink to="/contact"> hire me </NavLink>
             </Button> */}
-          </div>
-          {/* <Button
+            </div>
+            {/* <Button
             bg="#ff0099"
             color="#000"
             label="Logout"
@@ -139,51 +140,55 @@ export default function About() {
               navigation("/login");
             }}
           /> */}
+          </div>
+        </Wrapper>
+        <p className="hero-top-data">drag and drop section</p>
+
+        <div
+          style={{
+            width: "200px",
+            padding: "10px 30px",
+            border: "2px solid black",
+          }}
+        >
+          <DragDropContext onDragEnd={handleOnDragEnd}>
+            <Droppable droppableId="characters">
+              {(provided) => (
+                <WrapperSection
+                  ref={provided.innerRef}
+                  {...provided.droppableProps}
+                >
+                  {characters.map((en, index) => {
+                    return (
+                      <Draggable
+                        key={en?.id}
+                        draggableId={en?.id}
+                        index={index}
+                      >
+                        {(provided) => (
+                          <li
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                          >
+                            <p>{en.name}</p>
+                          </li>
+                        )}
+                      </Draggable>
+                    );
+                  })}
+                  {provided?.placeholder}
+                </WrapperSection>
+              )}
+            </Droppable>
+          </DragDropContext>
         </div>
-      </Wrapper>
-      <p className="hero-top-data">drag and drop section</p>
 
-      <div
-        style={{
-          width: "200px",
-          padding: "10px 30px",
-          border: "2px solid black",
-        }}
-      >
-        <DragDropContext onDragEnd={handleOnDragEnd}>
-          <Droppable droppableId="characters">
-            {(provided) => (
-              <WrapperSection
-                ref={provided.innerRef}
-                {...provided.droppableProps}
-              >
-                {characters.map((en, index) => {
-                  return (
-                    <Draggable key={en?.id} draggableId={en?.id} index={index}>
-                      {(provided) => (
-                        <li
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                        >
-                          <p>{en.name}</p>
-                        </li>
-                      )}
-                    </Draggable>
-                  );
-                })}
-                {provided?.placeholder}
-              </WrapperSection>
-            )}
-          </Droppable>
-        </DragDropContext>
-      </div>
-
-      {/* <div>
+        {/* <div>
         <QuoteApp />
       </div> */}
 
-      {/* <div style={{ padding: "10px 0px" }}>
+        {/* <div style={{ padding: "10px 0px" }}>
         <h1>This is the About page</h1>
         <h2> user data form the context data and user token {appToken}</h2>
 
@@ -201,6 +206,7 @@ export default function About() {
           />
         </ButtonDiv>
       </div> */}
+      </Content>
     </>
   );
 }

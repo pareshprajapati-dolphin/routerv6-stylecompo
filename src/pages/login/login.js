@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 // import { useAuth } from "../../Component/store/AuthProvider";
 import Button from "../../Component/Ui/Atoms/button";
 import { Input, PasswordInput } from "../../Component/Ui/Atoms/input";
-// import { loginApi } from "../../Api/apiService";
+import { loginApi } from "../../Api/apiService";
 import { useLocalStorage } from "../../hook/useLocalStorage";
 import { useCookiesStorage } from "../../hook/useCookiesStorage";
 import CheckBox from "../../Component/Ui/Atoms/checkBox";
@@ -51,22 +51,33 @@ export default function Login() {
   const handleSubmitt = async (e) => {
     e.preventDefault();
     setLoading(true);
-    if (
-      loginData.email === "superadmin@dws.com" &&
-      loginData.password === "admin123"
-    ) {
-      let userdata = {
-        name: "suerpadmin",
-        email: "superadmin@dws.com",
-        token: "876|jshdgf",
-      };
-      setAppToken(userdata.token);
-      setLocalUser(userdata);
-      toast.success("user login successfully");
+    const data = await loginApi(loginData);
+    if (data.status === 200) {
+      setLocalUser(data.data);
+      setAppToken(data?.data?.token);
+      toast.success(data.message);
+      // login(data, data?.data?.token);
+      navigation("/", { replace: true });
     } else {
-      toast.error("email and password is invalid");
-      setLoading(false);
+      toast.error(data?.message);
     }
+
+    // if (
+    //   loginData.email === "superadmin@dws.com" &&
+    //   loginData.password === "admin123"
+    // ) {
+    //   let userdata = {
+    //     name: "suerpadmin",
+    //     email: "superadmin@dws.com",
+    //     token: "876|jshdgf",
+    //   };
+    //   setAppToken(userdata.token);
+    //   setLocalUser(userdata);
+    //   toast.success("user login successfully");
+    // } else {
+    //   toast.error("email and password is invalid");
+    //   setLoading(false);
+    // }
   };
 
   const disableButton = useMemo(() => {
