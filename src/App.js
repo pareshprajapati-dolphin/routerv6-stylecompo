@@ -57,7 +57,21 @@ function App() {
         },
         {
           path: "service",
-          element: <Service />,
+          // element: <Service />,
+          children: [
+            {
+              index: true,
+              element: <Service />,
+            },
+            {
+              path: "newservice",
+              element: <div> This the new service </div>,
+            },
+            {
+              path: "editservice",
+              element: <div> This the edit service </div>,
+            },
+          ],
         },
         {
           path: "details",
@@ -90,10 +104,10 @@ function App() {
                   index: true,
                   element: <EditContact />,
                 },
-                {
-                  path: "details",
-                  element: <div>this the detils page </div>,
-                },
+                // {
+                //   path: "details",
+                //   element: <div>this the detils page </div>,
+                // },
               ],
             },
           ],

@@ -9,6 +9,7 @@ import content from "../Component/Content";
 import Card from "../Component/Ui/Atoms/Card";
 import { useTranslation } from "react-i18next";
 import withAuth from "../Component/Hoc";
+import { Content } from "../style/global.css.";
 
 export const Container = styled.div`
   width: 1000px;
@@ -41,27 +42,27 @@ function Home() {
 
   return (
     <>
-      <div style={{ padding: "20px" }}>
+      <Content>
         <h3>{t("welcome_message")}</h3>
         <p>{t("days_since_release", { number_of_days })}</p>
-      </div>
 
-      <div style={{ padding: "10px" }}>
+        {/* <div style={{ padding: "10px" }}>
         <ImageSlider slides={SliderData} />
-      </div>
+      </div> */}
 
-      <Container>
-        {content.map((item, index) => (
-          <Card key={index} item={item} />
-        ))}
-      </Container>
+        <Container>
+          {content.map((item, index) => (
+            <Card key={index} item={item} />
+          ))}
+        </Container>
 
-      {/* <h2>thie the api token::: {appToken}</h2>
+        {/* <h2>thie the api token::: {appToken}</h2>
       <StyledLable>login user name: {user.name}</StyledLable>
 
       <StyledLable>user email Address::: {user.email}</StyledLable> */}
 
-      {/* <button onClick={() => handleClick()}>Click</button> */}
+        {/* <button onClick={() => handleClick()}>Click</button> */}
+      </Content>
     </>
   );
 }

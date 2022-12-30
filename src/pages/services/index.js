@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import Button from "../../Component/Ui/Atoms/button";
 import useFullpageLoader from "../../hook/useFullpageLoader";
+import { Content } from "../../style/global.css.";
 import { Wrapper } from "./service.css";
 
 // const Wrapper = styled.div`
@@ -65,21 +66,23 @@ export default function Service() {
 
   return (
     <>
-      <h2 className="common-heading">{t("labels.our_services")}</h2>
-      {loader}
-      <Wrapper>
-        {serviceData.map((curElem) => (
-          <div>
-            <img src={curElem.images[0]} alt="...." />
+      <Content>
+        <h2 className="common-heading">{t("labels.our_services")}</h2>
+        {loader}
+        <Wrapper>
+          {serviceData.map((curElem) => (
             <div>
-              <p>{curElem.description}</p>
-              <div style={{ paddingTop: "20px" }}>
-                <Button label="Read More" bg="skyblue" disabled />
+              <img src={curElem.images[0]} alt="...." />
+              <div>
+                <p>{curElem.description}</p>
+                <div style={{ paddingTop: "20px" }}>
+                  <Button label="Read More" bg="skyblue" disabled />
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </Wrapper>
+          ))}
+        </Wrapper>
+      </Content>
     </>
   );
 }
