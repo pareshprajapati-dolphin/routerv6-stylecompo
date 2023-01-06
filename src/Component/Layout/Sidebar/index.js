@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import useLocalStorage from "../../../hook/useLocalStorage";
 import {
   MenuItems,
   SidebarMenu,
   SubMenuItems,
-  SubSidebarLabel,
-  SubSidebarLink,
   SidebarLink,
   SidebarLabel,
+  UserDetails,
+  Picture,
+  ProfileImage,
 } from "./sidebar.css";
 
 const SidebarData = [
@@ -40,18 +40,24 @@ const SidebarData = [
     navbar: "Contact",
     child: [
       {
-        path: "addcontact",
+        path: "/contact/addcontact",
         navbar: "Add Contact",
       },
-      {
-        path: "editcontct",
-        navbar: "Edit Contact",
-      },
+      // {
+      //   path: "/contact/2",
+      //   navbar: "Edit Contact",
+      // },
     ],
   },
   {
     path: "/user",
     navbar: "User",
+    child: [
+      {
+        path: "/user/adduser",
+        navbar: "Add user",
+      },
+    ],
   },
   {
     path: "/details",
@@ -59,80 +65,41 @@ const SidebarData = [
   },
 ];
 
-const UserDetails = styled.div`
-  display: block;
-`;
-const Picture = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 100%;
-  padding: 0px 10px;
-  width: 50%;
-`;
-const ProfileImage = styled.img`
-  border-radius: 50%;
-  width: 70%;
-`;
+const activePath = (path) => {
+  const url = window.location.pathname;
+
+  if (path === url) {
+    return true;
+  } else if (path === `/${url.split("/")[1]}`) {
+    return true;
+  } else return false;
+};
 
 const Submenu = (item) => {
-  const activePath = (path) => {
-    let url = window.location.pathname;
-    if (path === url) {
-      return true;
-    } else if (path === url.split("/")[1]) {
-      return true;
-    } else return false;
-  };
   return (
-    <>
-      <SubMenuItems>
-        {item.item.map((sdata, index) => {
-          return (
-            <SubSidebarLink
-              to={sdata.path}
-              key={index}
-              active={activePath(sdata.path)}
-            >
-              <SubSidebarLabel>{sdata.navbar}</SubSidebarLabel>
-            </SubSidebarLink>
-          );
-        })}
-      </SubMenuItems>
-    </>
+    <SidebarLink to={item?.item?.path} active={activePath(item?.item?.path)}>
+      <SidebarLabel>{item?.item?.navbar}</SidebarLabel>
+    </SidebarLink>
   );
 };
 
 export default function Sidebar({ sidebarIsOpen }) {
-  // const [open, setOpen] = useState("");
-  // const toggle = (id) => setOpen(id);
   const [localUser, setLocalUser] = useLocalStorage("userdata");
   const [user, setUser] = useState({});
-  const activePath = (path) => {
-    const url = window.location.pathname;
-
-    if (path === url) {
-      return true;
-    } else if (path === `/${url.split("/")[1]}`) {
-      return true;
-    } else return false;
-  };
 
   useEffect(() => {
     if (localUser) {
       setUser(localUser);
     }
-  }, []);
-
-  // console.log("__pp test ::", user);
+  }, [localUser]);
 
   return (
     <>
       <SidebarMenu sidebaropen={sidebarIsOpen}>
-        <UserDetails className="flex items-center sidebar-infodetails">
+        <UserDetails>
           <Picture>
-            <ProfileImage src="./logo192.png" alt="..." />
-            <p>{user && user?.name} </p>
+            {/* <ProfileImage src="./logo192.png" alt="..." /> */}
+            <p style={{ color: "#000000" }}>{user && user?.name} </p>
           </Picture>
         </UserDetails>
         <hr />
@@ -140,12 +107,16 @@ export default function Sidebar({ sidebarIsOpen }) {
           return (
             <>
               <MenuItems key={index}>
-                <SidebarLink to={item.path} active={activePath(item.path)}>
-                  <SidebarLabel>{item.navbar}</SidebarLabel>
-                </SidebarLink>
-                {activePath(item.path) && item.child && (
-                  <Submenu item={item.child} />
-                )}
+                <Submenu item={item} />
+                {activePath(item.path) &&
+                  item?.child &&
+                  item?.child?.map((sdata, i) => {
+                    return (
+                      <SubMenuItems key={i}>
+                        <Submenu item={sdata} />
+                      </SubMenuItems>
+                    );
+                  })}
               </MenuItems>
             </>
           );

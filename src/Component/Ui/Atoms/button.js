@@ -1,15 +1,15 @@
 import React from "react";
+import ButtonLoader from "./ButtonLoder";
 import styled, { css } from "styled-components";
-import Spinner from "../../Icons/Spinner";
 
 const ButtonContainer = styled.button`
-  border-radius: 50px;
+  border-radius: ${({ padding }) => (padding ? "10px " : "50px")};
   border: none;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   cursor: pointer;
   font-size: 16px;
-  font-weight: 700;
-  padding: 15px 60px;
+  font-weight: 200;
+  padding: ${({ padding }) => padding || "15px 50px"};
   background-color: ${({ bg }) => bg || "#fff"};
   color: ${({ color }) => color || "#333"};
   &:hover {
@@ -32,6 +32,7 @@ export default function Button({
   processingIcon,
   disabled,
   type,
+  padding,
 }) {
   return (
     <ButtonContainer
@@ -41,9 +42,10 @@ export default function Button({
       color={color}
       varient={varient}
       disabled={disabled}
+      padding={padding}
     >
       {label}
-      {processingIcon && <Spinner />}
+      {processingIcon && <ButtonLoader />}
     </ButtonContainer>
   );
 }

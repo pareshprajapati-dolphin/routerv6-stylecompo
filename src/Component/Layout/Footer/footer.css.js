@@ -2,8 +2,7 @@ import styled from "styled-components";
 
 export const StyledFooter = styled.div`
   background-color: ${({ theme }) => theme.colors.footer};
-  color: #fff;
-  padding: 100px 0 60px;
+  color: black;
   position: sticky;
   top: 100%;
   ul {
@@ -40,7 +39,9 @@ export const Flex = styled.div`
 `;
 
 export const SocialDiv = styled.div`
-  display: flex;
+  /* display: flex;
+  flex: 1; */
+  margin-left: 2rem;
   > div > i {
     padding: 0px 3px;
   }

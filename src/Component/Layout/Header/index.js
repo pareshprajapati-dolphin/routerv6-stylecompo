@@ -72,7 +72,6 @@ const StyledDivt = styled.form`
 
 const ToggleIcon = styled.button`
   border: none;
-  background: #ebfbff;
   margin-left: -10px;
   cursor: pointer;
 `;

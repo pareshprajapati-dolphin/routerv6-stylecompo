@@ -1,15 +1,46 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import styled from "styled-components";
 import Button from "../../Component/Ui/Atoms/button";
 import { Input } from "../../Component/Ui/Atoms/input";
 import { Content } from "../../style/global.css.";
 import { StyledForm, StyledH1 } from "./edituser.css";
 
+const Buttondiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0px;
+`;
+
 export default function EditUser() {
   const { id } = useParams();
-  const [editData, setEditData] = useState({});
+  const [editData, setEditData] = useState({
+    name: "",
+    trips: "",
+  });
   const navigator = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setEditData({
+      ...editData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmitt = async (e) => {
+    e.preventDefault();
+
+    await axios
+      .put(`https://api.instantwebtools.net/v1/passenger/${id}`, editData)
+      .then((res) => {
+        navigator("/user");
+      })
+      .catch((err) => {
+        console.log("err::", err);
+      });
+  };
 
   useEffect(() => {
     (async () => {
@@ -28,54 +59,41 @@ export default function EditUser() {
   return (
     <>
       <Content>
-        <StyledForm>
+        <StyledForm onSubmit={handleSubmitt}>
           <StyledH1>Edit page</StyledH1>
           <Input
             id="firstname"
-            name="firstname"
+            name="name"
             type="text"
             labelName="Passeger Name"
             value={editData?.name}
             onChange={(ev) => {
-              // handleChange(ev);
+              handleChange(ev);
             }}
           />
           <Input
             id="lastname"
-            name="lastname"
+            name="trips"
             type="text"
             labelName="Trip"
             value={editData?.trips}
             onChange={(e) => {
-              // handleChange(e);
+              handleChange(e);
             }}
           />
-          <Input
+          {/* <Input
             id="lastname"
-            name="lastname"
+            name="airlinename"
             type="text"
             labelName="Airline Name"
             value={editData?.name}
             onChange={(e) => {
               // handleChange(e);
             }}
-          />
+          /> */}
 
-          <div
-            style={{
-              display: " flex ",
-              padding: "10px 0px",
-              justifyContent: "space-between",
-            }}
-          >
-            <Button
-              label="SignUp"
-              bg="#ff0099"
-              color="#fff"
-              onClick={(e) => {
-                // handleSubmitt(e);
-              }}
-            />
+          <Buttondiv>
+            <Button label="SignUp" bg="#ff0099" color="#fff" />
 
             <Button
               label="Cancle"
@@ -85,7 +103,7 @@ export default function EditUser() {
                 navigator("/user");
               }}
             />
-          </div>
+          </Buttondiv>
         </StyledForm>
       </Content>
     </>

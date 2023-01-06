@@ -1,14 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-const StyledDiv = styled.div`
-  display: inline-block;
-  vertical-align: middle;
-  &:hover input {
-    background-color: #ccc;
-  }
-`;
 const StyledCheckbox = styled.input`
+  cursor: pointer;
   width: 16px;
   height: 16px;
   gap: 5px;
@@ -29,18 +23,16 @@ export default function CheckBox({
 }) {
   return (
     <>
-      <StyledDiv>
-        <label htmlFor={id}>
-          <StyledCheckbox
-            id={id}
-            name={name}
-            type={type}
-            onChange={onChange}
-            checked={value}
-          />
-          {labelName}
-        </label>
-      </StyledDiv>
+      <label htmlFor={id}>
+        <StyledCheckbox
+          id={id}
+          name={name}
+          type={type}
+          onChange={onChange}
+          checked={value}
+        />
+        {labelName}
+      </label>
     </>
   );
 }

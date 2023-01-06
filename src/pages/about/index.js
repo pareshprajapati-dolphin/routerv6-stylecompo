@@ -7,35 +7,13 @@ import useLocalStorage from "../../hook/useLocalStorage";
 import { useCookiesStorage } from "../../hook/useCookiesStorage";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { Content } from "../../style/global.css.";
+import HeaderText from "../../Component/Ui/Atoms/heading/headerText";
 // import QuoteApp from "../../Component/DragDrop";
 
-// const ButtonDiv = styled.div`
-//   width: 30%;
-//   display: flex;
-//   flex-wrap: nowrap;
-//   align-content: center;
-//   align-items: center;
-// `;
-
 const Wrapper = styled.section`
-  .section-hero-data {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .hero-top-data {
-    text-transform: uppercase;
-    font-weight: 500;
-    color: black;
-  }
-  .hero-heading {
-    text-transform: uppercase;
-  }
-  .hero-para {
-    margin-top: 1.5rem;
-    margin-bottom: 3.4rem;
-    max-width: 60rem;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 const WrapperSection = styled.ul`
@@ -118,29 +96,14 @@ export default function About() {
     <>
       <Content>
         <Wrapper>
-          <div className="container">
-            <div className="section-hero-data">
-              <p className="hero-top-data">THIS IS ME</p>
-              <h1 className="hero-heading">User Name ::-- {userLogin.name}</h1>
-              <p className="hero-para">
-                I'm {userLogin.name}. A Full stack Developer, youtuber and
-                freelancer. A Full stack Developer, youtuber and freelancer.
-              </p>
-              {/* <Button className="btn hireme-btn">
-              <NavLink to="/contact"> hire me </NavLink>
-            </Button> */}
-            </div>
-            {/* <Button
-            bg="#ff0099"
-            color="#000"
-            label="Logout"
-            onClick={() => {
-              setLocalUser();
-              setAppToken();
-              navigation("/login");
-            }}
-          /> */}
-          </div>
+          <HeaderText varient="p">About Page</HeaderText>
+          <HeaderText varient="h1" fontSize="20px">
+            User Name data::-- {userLogin.name}
+          </HeaderText>
+          <HeaderText varient="p">
+            I'm {userLogin.name}. A Full stack Developer, youtuber and
+            freelancer. A Full stack Developer, youtuber and freelancer.
+          </HeaderText>
         </Wrapper>
         <p className="hero-top-data">drag and drop section</p>
 

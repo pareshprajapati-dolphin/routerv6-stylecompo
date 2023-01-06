@@ -10,6 +10,7 @@ import Card from "../Component/Ui/Atoms/Card";
 import { useTranslation } from "react-i18next";
 import withAuth from "../Component/Hoc";
 import { Content } from "../style/global.css.";
+import HeaderText from "../Component/Ui/Atoms/heading/headerText";
 
 export const Container = styled.div`
   width: 1000px;
@@ -43,12 +44,8 @@ function Home() {
   return (
     <>
       <Content>
-        <h3>{t("welcome_message")}</h3>
+        <HeaderText varient="h3">{t("welcome_message")}</HeaderText>
         <p>{t("days_since_release", { number_of_days })}</p>
-
-        {/* <div style={{ padding: "10px" }}>
-        <ImageSlider slides={SliderData} />
-      </div> */}
 
         <Container>
           {content.map((item, index) => (

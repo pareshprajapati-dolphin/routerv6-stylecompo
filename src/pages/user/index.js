@@ -1,14 +1,23 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Pagination from "../../Component/Pagination";
+import Button from "../../Component/Ui/Atoms/button";
+import HeaderText from "../../Component/Ui/Atoms/heading/headerText";
 import Select from "../../Component/Ui/Atoms/select";
 import { useCookiesStorage } from "../../hook/useCookiesStorage";
 import useFullpageLoader from "../../hook/useFullpageLoader";
 import useLocalStorage from "../../hook/useLocalStorage";
 import { Content } from "../../style/global.css.";
-import { TableContainer } from "./edituser.css";
+import {
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableHeader,
+  TableTh,
+  TableTr,
+} from "./edituser.css";
 
 export default function User() {
   const [user, setUser] = useState([]);
@@ -64,63 +73,70 @@ export default function User() {
   return (
     <>
       <Content>
-        <div className="mt-2">
-          <div className="ms-2">
-            <Select
-              labelName="page"
-              name="page_per_item"
-              onChange={(e) => {
-                setPageSize(e.target.value);
-                setCurrentPage(1);
-              }}
-              optionList={[
-                { value: 10, name: "10" },
-                { value: 20, name: "20" },
-                { value: 50, name: "50" },
-              ]}
+        <div>
+          <TableHeader>
+            <HeaderText varient="h1">User</HeaderText>
+            <Button
+              bg="#3399ff"
+              color="#fff"
+              label="Add User"
+              onClick={() => navigation("/user/adduser")}
             />
-          </div>
+          </TableHeader>
 
           <TableContainer>
-            <table>
-              <thead>
-                <tr>
-                  <th scope="col">No.</th>
-                  <th scope="col">Passenger Name</th>
-                  <th scope="col">Passenger Trip</th>
-                  <th scope="col">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {user.length > 0 ? (
-                  user.map((passenger, id) => {
-                    return (
-                      <tr key={id}>
-                        <td scope="row">{id + 1}</td>
-                        <td>{passenger.name}</td>
-                        <td>{passenger.trips}</td>
-                        <td>
-                          <Link to={`${passenger._id}`} className="ml-2">
-                            edit
-                          </Link>
-                          <button
-                            style={{ marginLeft: "5px" }}
-                            onClick={(e) => handleDelete(e, passenger._id)}
-                          >
-                            {" "}
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })
-                ) : (
-                  <>no Data found</>
-                )}
-              </tbody>
-            </table>
+            <TableHead>
+              <TableTr>
+                <TableTh scope="col">No.</TableTh>
+                <TableTh scope="col">Passenger Name</TableTh>
+                <TableTh scope="col">Passenger Trip</TableTh>
+                <TableTh scope="col">Action</TableTh>
+              </TableTr>
+            </TableHead>
+            <tbody>
+              {user.length > 0 ? (
+                user.map((passenger, id) => {
+                  return (
+                    <TableTr key={id}>
+                      <TableCell scope="row">{id + 1}</TableCell>
+                      <TableCell>{passenger.name}</TableCell>
+                      <TableCell>{passenger.trips}</TableCell>
+                      <TableCell>
+                        {/* <Link to={`/user/slug=${passenger._id}`}>Edit</Link> */}
+                        <Button
+                          onClick={() =>
+                            navigation(`/user/slug=${passenger._id}`)
+                          }
+                          label=" edit"
+                          bg="#3399ff"
+                        />
+                        <Button
+                          onClick={(e) => handleDelete(e, passenger._id)}
+                          label="Delete"
+                        />
+                      </TableCell>
+                    </TableTr>
+                  );
+                })
+              ) : (
+                <>{loader ? loader : <>no Data found</>}</>
+              )}
+            </tbody>
           </TableContainer>
-          <div style={{ margin: "10px 0px" }}>
+          <Select
+            labelName="page"
+            name="page_per_item"
+            onChange={(e) => {
+              setPageSize(e.target.value);
+              setCurrentPage(1);
+            }}
+            optionList={[
+              { value: 10, name: "10" },
+              { value: 20, name: "20" },
+              { value: 50, name: "50" },
+            ]}
+          />
+          <div>
             <Pagination
               total={total}
               pageSize={pageSize}
@@ -129,7 +145,6 @@ export default function User() {
             />
           </div>
         </div>
-        {loader}
       </Content>
     </>
   );
