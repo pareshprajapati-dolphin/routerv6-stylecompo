@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import HeaderText from "../heading/headerText";
 // import { StyledCard } from "./Card.style";
 
 const StyledCard = styled.div`
@@ -10,10 +11,7 @@ const StyledCard = styled.div`
   margin: 40px 0;
   padding: 40px;
   flex-direction: ${({ layout }) => layout || "row"};
-  img {
-    width: 80%;
-    border-radius: 15px;
-  }
+
   & > div {
     flex: 1;
   }
@@ -25,16 +23,21 @@ const StyledCard = styled.div`
   }
 `;
 
+const StyledImage = styled.img`
+  width: 80%;
+  border-radius: 15px;
+`;
+
 export default function Card({ item: { title, body, image } }) {
   return (
     <StyledCard>
       <div>
-        <h2>{title}</h2>
-        <p>{body}</p>
+        <HeaderText varient="h2">{title}</HeaderText>
+        <HeaderText varient="p">{body}</HeaderText>
       </div>
 
       <div>
-        <img src={`${image}`} alt="" />
+        <StyledImage img src={`${image}`} alt="" />
       </div>
     </StyledCard>
   );

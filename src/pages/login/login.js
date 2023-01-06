@@ -143,7 +143,8 @@ export default function Login() {
             name="email"
             type="text"
             value={loginData.email}
-            labelName={t("labels.email_address")}
+            // labelName={t("labels.email_address")}
+            labelName="Email Address"
             onChange={(e) => {
               handleChange(e);
             }}
@@ -161,7 +162,8 @@ export default function Login() {
             name="password"
             type="password"
             value={loginData.password}
-            labelName={t("labels.password")}
+            // labelName={t("labels.password")}
+            labelName="Password"
             onChange={(e) => {
               handleChange(e);
             }}
@@ -184,10 +186,17 @@ export default function Login() {
             onChange={(e) => handleChange(e)}
           />
 
-          <div style={{ display: "flex", paddingTop: "10px" }}>
+          <div
+            style={{
+              display: "flex",
+              marginTop: "2rem",
+              justifyContent: "space-around",
+              alignItems: "center",
+            }}
+          >
             {!loading ? (
               <Button
-                bg="#ff0099"
+                bg="#3399ff"
                 color="#fff"
                 label="Login"
                 disabled={disableButton}

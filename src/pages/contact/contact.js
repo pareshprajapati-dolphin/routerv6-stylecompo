@@ -1,14 +1,14 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import useLocalStorage from "../../hook/useLocalStorage";
 import { useCookiesStorage } from "../../hook/useCookiesStorage";
-import styled from "styled-components";
 import { Input } from "../../Component/Ui/Atoms/input";
 import Button from "../../Component/Ui/Atoms/button";
 import { useTranslation } from "react-i18next";
 import { useDropzone } from "react-dropzone";
 import { StyledForm, StyledH1, StyledImage, StyleDiv } from "./contact.css";
 import { Content } from "../../style/global.css.";
+import HeaderText from "../../Component/Ui/Atoms/heading/headerText";
 
 export default function Contact() {
   const navigator = useNavigate();
@@ -105,8 +105,13 @@ export default function Contact() {
     <>
       <Content>
         <div>
-          <h1>{t("labels.contact_title")}</h1>
-          <NavLink to={`${4}`}> edit contact</NavLink>
+          <HeaderText varient="h1">
+            {/* {t("labels.contact_title")} */}
+            This is the contact page
+          </HeaderText>
+          {/* <h1></h1> */}
+
+          <NavLink to={`${4}`}>edit contact </NavLink>
         </div>
 
         <StyledForm>
@@ -136,7 +141,8 @@ export default function Contact() {
             id="email"
             name="email"
             type="text"
-            labelName={t("labels.email_address")}
+            // labelName={t("labels.email_address")}
+            labelName="Email Address"
             value={contactData.email}
             onChange={(e) => {
               handleChange(e);
@@ -172,7 +178,7 @@ export default function Contact() {
               <Button
                 label="SignUp"
                 type="submit"
-                bg="#ff0099"
+                bg="#3399ff"
                 color="#fff"
                 disabled={disablButton}
                 onClick={(e) => {

@@ -1,4 +1,4 @@
-import { useRoutes } from "react-router-dom";
+import { useLocation, useRoutes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { ThemeProvider } from "styled-components";
 import { Provider } from "react-redux";
@@ -9,21 +9,23 @@ import Service from "./pages/services";
 import Contact from "./pages/contact/contact";
 import CreateAccount from "./pages/create-account";
 import Details from "./pages/details";
-import EditContact from "./pages/editContact";
+import EditContact from "./pages/contact/editContact";
 import ErrorPage from "./pages/errorPage";
-
 import Home from "./pages/home";
 import Login from "./pages/login/login";
 import GlobalStyles from "./style/GlobalStyle";
 import { store } from "./redux/store";
 import User from "./pages/user";
 import EditUser from "./pages/user/editUser";
+import AddUser from "./pages/user/addUser";
+import { useEffect, useState } from "react";
+import ProgessBar from "./Component/ProgessBar";
 
 const theme = {
   colors: {
-    header: "#ebfbff",
+    header: "#f1f1f1",
     body: "#fff",
-    footer: "#003333",
+    footer: "#fff",
     disabled: "#707070",
     bg: "rgb(249 249 255)",
   },
@@ -31,6 +33,10 @@ const theme = {
 };
 
 function App() {
+  const [progess, setProgess] = useState(false);
+  const [prevLoc, setPrevLoc] = useState("");
+  const location = useLocation();
+
   let element = useRoutes([
     {
       path: "/login",
@@ -85,7 +91,11 @@ function App() {
               element: <User />,
             },
             {
-              path: ":id",
+              path: "adduser",
+              element: <AddUser />,
+            },
+            {
+              path: "slug=:id",
               element: <EditUser />,
             },
           ],
@@ -96,6 +106,10 @@ function App() {
             {
               index: true,
               element: <Contact />,
+            },
+            {
+              path: "addcontact",
+              element: <div>this the add contact page </div>,
             },
             {
               path: ":id",
@@ -116,11 +130,24 @@ function App() {
     },
   ]);
 
+  useEffect(() => {
+    setPrevLoc(location.pathname);
+    setProgess(true);
+    if (location.pathname === prevLoc) {
+      setPrevLoc("");
+    }
+  }, [location]);
+
+  useEffect(() => {
+    setProgess(false);
+  }, [prevLoc]);
+
   return (
     <>
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <GlobalStyles />
+          {progess && <ProgessBar />}
           {element}
         </ThemeProvider>
       </Provider>

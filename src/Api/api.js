@@ -24,3 +24,21 @@ export default function api(token) {
     });
   }
 }
+
+export function CreateApi(toke) {
+  if (typeof toke === "string") {
+    return axios.create({
+      baseURL: `${BACKEND_API}`,
+      headers: {
+        Authorization: ` ${toke}`,
+      },
+    });
+  } else {
+    return axios.create({
+      baseURL: `${BACKEND_API}`,
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+  }
+}

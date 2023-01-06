@@ -1,11 +1,26 @@
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
+export const UserDetails = styled.div`
+  display: block;
+`;
+export const Picture = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  padding: 0px 10px;
+  width: 50%;
+`;
+export const ProfileImage = styled.img`
+  border-radius: 50%;
+  width: 70%;
+`;
 
 export const SidebarMenu = styled.div`
   /* width: 200px; */
   width: ${({ sidebaropen }) => (sidebaropen ? "200px" : "0px ")};
   height: 100vh;
-  background-color: #5f808d;
+  background-color: #4f5d73;
   position: fixed;
   top: 0;
   left: ${({ sidebaropen }) => !sidebaropen && 0};
@@ -54,7 +69,7 @@ export const SubMenuItemLinks = styled.li`
   &:hover {
     width: 100%;
     background-color: #ffffff;
-    color: #000;
+    color: #ffffff;
     border-radius: 5px;
   }
 `;
@@ -75,16 +90,16 @@ export const SidebarLink = styled(Link)`
   text-decoration: none;
   font-size: 18px;
   &:hover {
-    background-color: #ffffff;
-    color: #000;
+    background-color: whitesmoke;
+    color: #000000;
     border-radius: 5px;
   }
 
   ${({ active }) =>
     active &&
     css`
-      background-color: rgb(173 163 223);
-      border-radius: 10px;
+      color: #000000;
+      background-color: #e1e8f3;
     `}
 `;
 
@@ -104,16 +119,16 @@ export const SubSidebarLink = styled(Link)`
   font-size: 18px;
   margin-top: 2px;
   &:hover {
-    background-color: #ffffff;
-    color: #000;
+    background-color: #9da5b1;
+    color: #fff;
     border-radius: 5px;
   }
 
   ${({ active }) =>
     active &&
     css`
-      background-color: rgb(173 163 223);
-      border-radius: 10px;
+      color: #000000;
+      background-color: #e1e8f3;
     `}
 `;
 

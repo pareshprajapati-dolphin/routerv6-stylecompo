@@ -4,7 +4,7 @@ import Spinner from "../Icons/greyLogo";
 import { SimpleLoadingIcon } from "../Icons/testingLogo.svg";
 
 const StyleLoader = styled.div`
-  position: fixed;
+  position: absolute;
   top: 50px;
   left: 30rem;
   z-index: 50;
