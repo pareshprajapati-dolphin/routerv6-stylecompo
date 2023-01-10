@@ -12,6 +12,7 @@ export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   position: relative;
+  background-color: #ffffff;
 `;
 
 export const StyleDiv = styled.div`

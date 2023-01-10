@@ -1,15 +1,9 @@
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
-export const UserDetails = styled.div`
-  display: block;
-`;
 export const Picture = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
   height: 100%;
-  padding: 0px 10px;
-  width: 50%;
+  padding: 0px 20px;
+  color: #ffff;
 `;
 export const ProfileImage = styled.img`
   border-radius: 50%;
@@ -17,7 +11,7 @@ export const ProfileImage = styled.img`
 `;
 
 export const SidebarMenu = styled.div`
-  /* width: 200px; */
+  display: block;
   width: ${({ sidebaropen }) => (sidebaropen ? "200px" : "0px ")};
   height: 100vh;
   background-color: #4f5d73;
@@ -104,6 +98,8 @@ export const SidebarLink = styled(Link)`
 `;
 
 export const SidebarLabel = styled.span`
+  display: flex;
+  flex-direction: row;
   margin-left: 10px;
 `;
 

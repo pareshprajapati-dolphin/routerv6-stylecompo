@@ -9,6 +9,7 @@ import { useDropzone } from "react-dropzone";
 import { StyledForm, StyledH1, StyledImage, StyleDiv } from "./contact.css";
 import { Content } from "../../style/global.css.";
 import HeaderText from "../../Component/Ui/Atoms/heading/headerText";
+// import { StyledDiv } from "../login/loginStyle";
 
 export default function Contact() {
   const navigator = useNavigate();

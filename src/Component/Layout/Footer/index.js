@@ -7,7 +7,6 @@ import { Flex, SocialDiv, StyledFooter } from "./footer.css";
 export default function Footer() {
   return (
     <>
-      <hr />
       <StyledFooter>
         <Container>
           <Flex>

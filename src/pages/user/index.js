@@ -6,18 +6,12 @@ import Pagination from "../../Component/Pagination";
 import Button from "../../Component/Ui/Atoms/button";
 import HeaderText from "../../Component/Ui/Atoms/heading/headerText";
 import Select from "../../Component/Ui/Atoms/select";
+import Table from "../../Component/Ui/Atoms/Table";
 import { useCookiesStorage } from "../../hook/useCookiesStorage";
 import useFullpageLoader from "../../hook/useFullpageLoader";
 import useLocalStorage from "../../hook/useLocalStorage";
 import { Content } from "../../style/global.css.";
-import {
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableHeader,
-  TableTh,
-  TableTr,
-} from "./edituser.css";
+import { TableHeader } from "./edituser.css";
 
 export default function User() {
   const [user, setUser] = useState([]);
@@ -69,6 +63,24 @@ export default function User() {
         console.log();
       });
   };
+  const tableHeader = [
+    {
+      key: "_id",
+      title: "Id",
+    },
+    {
+      key: "name",
+      title: "Passenger Name",
+    },
+    {
+      key: "trips",
+      title: "Passenger Trip",
+    },
+    {
+      key: "action",
+      title: "Action",
+    },
+  ];
 
   return (
     <>
@@ -84,45 +96,8 @@ export default function User() {
             />
           </TableHeader>
 
-          <TableContainer>
-            <TableHead>
-              <TableTr>
-                <TableTh scope="col">No.</TableTh>
-                <TableTh scope="col">Passenger Name</TableTh>
-                <TableTh scope="col">Passenger Trip</TableTh>
-                <TableTh scope="col">Action</TableTh>
-              </TableTr>
-            </TableHead>
-            <tbody>
-              {user.length > 0 ? (
-                user.map((passenger, id) => {
-                  return (
-                    <TableTr key={id}>
-                      <TableCell scope="row">{id + 1}</TableCell>
-                      <TableCell>{passenger.name}</TableCell>
-                      <TableCell>{passenger.trips}</TableCell>
-                      <TableCell>
-                        {/* <Link to={`/user/slug=${passenger._id}`}>Edit</Link> */}
-                        <Button
-                          onClick={() =>
-                            navigation(`/user/slug=${passenger._id}`)
-                          }
-                          label=" edit"
-                          bg="#3399ff"
-                        />
-                        <Button
-                          onClick={(e) => handleDelete(e, passenger._id)}
-                          label="Delete"
-                        />
-                      </TableCell>
-                    </TableTr>
-                  );
-                })
-              ) : (
-                <>{loader ? loader : <>no Data found</>}</>
-              )}
-            </tbody>
-          </TableContainer>
+          <Table tableHeader={tableHeader} tableData={user} />
+
           <Select
             labelName="page"
             name="page_per_item"

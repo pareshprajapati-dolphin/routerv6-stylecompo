@@ -11,6 +11,7 @@ export const Wrapper = styled.div`
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     padding: 40px;
     flex-direction: row;
+    background-color: white;
     img {
       width: 30%;
       border-radius: 15px;
