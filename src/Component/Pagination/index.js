@@ -1,7 +1,13 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Button from "../Ui/Atoms/button";
 
-export default function Pagination({ total, onPageChange, page, pageSize }) {
+export default function Pagination({
+  total,
+  onPageChange,
+  page,
+  pageSize,
+  currentpage,
+}) {
   const [totalPage, setTotalPage] = useState(0);
 
   useEffect(() => {
@@ -13,10 +19,13 @@ export default function Pagination({ total, onPageChange, page, pageSize }) {
 
     for (let i = 1; i <= totalPage; i++) {
       pages.push(
-        <div style={{ margin: "0px 5px" }}>
+        <div style={{ margin: "0px 5px" }} key={i}>
           <Button
             label={i}
             onClick={() => onPageChange(i)}
+            active={i === page}
+            minWidth="50px"
+            minHeight="50px"
             //  padding="8px 15px"
           />
         </div>
@@ -33,7 +42,8 @@ export default function Pagination({ total, onPageChange, page, pageSize }) {
       <Button
         label="Prev"
         onClick={() => onPageChange(page - 1)}
-        padding="8px 15px"
+        minWidth="50px"
+        minHeight="50px"
         disabled={page === 1}
       />
       {/* <button onClick={() => onPageChange(page - 1)} disabled={page === 1}>
@@ -42,7 +52,8 @@ export default function Pagination({ total, onPageChange, page, pageSize }) {
       {pageNumber}
       <Button
         label="Next"
-        padding="8px 15px"
+        minWidth="50px"
+        minHeight="50px"
         onClick={() => onPageChange(page + 1)}
         disabled={page === totalPage}
       />

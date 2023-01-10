@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 // import { useAuth } from "../Component/store/AuthProvider";
@@ -83,19 +83,39 @@ export default function About() {
 
     updateCharacters(items);
   };
-  // console.log("_pp test ::", characters);
 
   useEffect(() => {
-    // console.log("_pp test user", !localUser);
     if (!localUser || !appToken) {
       navigation("/login", { replace: true });
     } else setUserLogin(localUser);
   }, [appToken, localUser, navigation]);
 
+  const array1 = ["a", "b", "c", "d"];
+  const array2 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const len = Math.max(array1.length, array2.length);
+  const result = [];
+  const MautiplrLenght = useMemo(() => {
+    const result = [];
+    console.log(len);
+    for (let i = 0; i < len; i++) {
+      if (array1[i] !== undefined) {
+        result.push(array1[i]);
+      }
+      if (array2[i] !== undefined) {
+        result.push(array2[i]);
+      }
+    }
+    return result;
+  }, []);
+
   return (
     <>
       <Content>
         <Wrapper>
+          {/* {MautiplrLenght} */}
+          {result.map((item) => {
+            return <p>{item}</p>;
+          })}
           <HeaderText varient="p">About Page</HeaderText>
           <HeaderText varient="h1" fontSize="20px">
             User Name data::-- {userLogin.name}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
-import routes from "../../Routes";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+// import routes from "../../Routes";
 import styled, { css } from "styled-components";
 import LogoutIcon from "../../Icons/logoutIcon";
 import useLocalStorage from "../../../hook/useLocalStorage";
@@ -18,6 +18,7 @@ const Wrapper = styled.header`
   z-index: 1;
   transition: all 0.3s ease-in-out;
   background: ${({ theme }) => theme.colors.header};
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   > ul {
     list-style: none;
     @media (max-width: 768px) {
@@ -74,6 +75,7 @@ const ToggleIcon = styled.button`
   border: none;
   margin-left: -10px;
   cursor: pointer;
+  background: none;
 `;
 
 const optionList = [
@@ -132,8 +134,8 @@ export default function Header({ toggleSidebar }) {
           <ToggleIcon onClick={toggleSidebar}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="27.429"
-              height="24"
+              width="24"
+              height="20"
               viewBox="0 0 27.429 24"
             >
               <path

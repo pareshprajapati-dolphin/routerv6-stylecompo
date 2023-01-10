@@ -8,7 +8,7 @@ import About from "./pages/about";
 import Service from "./pages/services";
 import Contact from "./pages/contact/contact";
 import CreateAccount from "./pages/create-account";
-import Details from "./pages/details";
+import Details from "./pages/Details/details";
 import EditContact from "./pages/contact/editContact";
 import ErrorPage from "./pages/errorPage";
 import Home from "./pages/home";
@@ -23,7 +23,7 @@ import ProgessBar from "./Component/ProgessBar";
 
 const theme = {
   colors: {
-    header: "#f1f1f1",
+    header: "#ffff",
     body: "#fff",
     footer: "#fff",
     disabled: "#707070",

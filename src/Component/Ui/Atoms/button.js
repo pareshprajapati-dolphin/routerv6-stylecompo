@@ -3,13 +3,14 @@ import ButtonLoader from "./ButtonLoder";
 import styled, { css } from "styled-components";
 
 const ButtonContainer = styled.button`
-  border-radius: ${({ padding }) => (padding ? "10px " : "50px")};
+  font-size: 1em;
+  min-width: ${({ minWidth }) => minWidth || "150px"};
+  min-height: ${({ minHeight }) => minHeight || "50px"};
+  padding: auto;
+  border-radius: 30px;
   border: none;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   cursor: pointer;
-  font-size: 16px;
-  font-weight: 200;
-  padding: ${({ padding }) => padding || "15px 50px"};
   background-color: ${({ bg }) => bg || "#fff"};
   color: ${({ color }) => color || "#333"};
   &:hover {
@@ -21,6 +22,12 @@ const ButtonContainer = styled.button`
       background-color: ${({ theme }) => theme.colors.disabled};
       pointer-events: none;
     `};
+
+  ${({ active }) =>
+    active &&
+    css`
+      background-color: #3399ff;
+    `}
 `;
 
 export default function Button({
@@ -32,7 +39,9 @@ export default function Button({
   processingIcon,
   disabled,
   type,
-  padding,
+  minHeight,
+  minWidth,
+  active,
 }) {
   return (
     <ButtonContainer
@@ -42,7 +51,9 @@ export default function Button({
       color={color}
       varient={varient}
       disabled={disabled}
-      padding={padding}
+      minWidth={minWidth}
+      minHeight={minHeight}
+      active={active}
     >
       {label}
       {processingIcon && <ButtonLoader />}

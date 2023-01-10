@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import useLocalStorage from "../../../hook/useLocalStorage";
+import CarletDown from "../../Icons/carletDown";
+import CarletLeft from "../../Icons/carletLeft";
+import CarRounded from "../../Icons/carRounded";
 import {
   MenuItems,
   SidebarMenu,
   SubMenuItems,
   SidebarLink,
   SidebarLabel,
-  UserDetails,
   Picture,
   ProfileImage,
 } from "./sidebar.css";
@@ -25,10 +27,12 @@ const SidebarData = [
     navbar: "Service",
     child: [
       {
+        icon: <CarRounded />,
         path: "/service/newservice",
         navbar: "New Service",
       },
       {
+        icon: <CarRounded />,
         path: "/service/editservice",
         navbar: "Edit Service",
       },
@@ -40,13 +44,10 @@ const SidebarData = [
     navbar: "Contact",
     child: [
       {
+        icon: <CarRounded />,
         path: "/contact/addcontact",
         navbar: "Add Contact",
       },
-      // {
-      //   path: "/contact/2",
-      //   navbar: "Edit Contact",
-      // },
     ],
   },
   {
@@ -54,6 +55,7 @@ const SidebarData = [
     navbar: "User",
     child: [
       {
+        icon: <CarRounded />,
         path: "/user/adduser",
         navbar: "Add user",
       },
@@ -78,7 +80,17 @@ const activePath = (path) => {
 const Submenu = (item) => {
   return (
     <SidebarLink to={item?.item?.path} active={activePath(item?.item?.path)}>
+      {item?.item?.icon && item.item?.icon}
       <SidebarLabel>{item?.item?.navbar}</SidebarLabel>
+      {item?.item?.child ? (
+        activePath(item?.item?.path) ? (
+          <CarletDown />
+        ) : (
+          <CarletLeft />
+        )
+      ) : (
+        ""
+      )}
     </SidebarLink>
   );
 };
@@ -96,12 +108,13 @@ export default function Sidebar({ sidebarIsOpen }) {
   return (
     <>
       <SidebarMenu sidebaropen={sidebarIsOpen}>
-        <UserDetails>
+        <div>
           <Picture>
             {/* <ProfileImage src="./logo192.png" alt="..." /> */}
-            <p style={{ color: "#000000" }}>{user && user?.name} </p>
+            <p style={{ color: "#ffff" }}>{user && user?.name} </p>
           </Picture>
-        </UserDetails>
+        </div>
+
         <hr />
         {SidebarData.map((item, index) => {
           return (

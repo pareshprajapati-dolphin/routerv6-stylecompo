@@ -10,7 +10,6 @@ const spin = keyframes`
   }
 `;
 const StyleLoader = styled.div`
-  display: inline-block;
   animation: ${spin} 2s linear infinite;
   font-size: 10px;
   /* height: 10px;

@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import React, { useState } from "react";
+// import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 import Footer from "./Footer";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 
 const AppWrapper = styled.div`
-  background-color: ${({ bg }) => bg || "#fff"};
+  background-color: whitesmoke;
   margin-left: ${({ sideberopen }) => sideberopen && "200px"};
-  /* > div {
-    display: flex;
-    justify-content: center;
-  } */
+  min-height: 100vh;
+  transition: all 0.5s ease-out;
   @media (max-width: 768px) {
     margin-left: ${({ sideberopen }) => sideberopen && "0px"};
   }
