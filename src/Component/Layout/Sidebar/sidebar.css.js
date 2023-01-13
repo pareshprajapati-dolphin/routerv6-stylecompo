@@ -13,7 +13,7 @@ export const ProfileImage = styled.img`
 export const SidebarMenu = styled.div`
   display: block;
   width: ${({ sidebaropen }) => (sidebaropen ? "200px" : "0px ")};
-  height: 100vh;
+  height: 100%;
   background-color: #4f5d73;
   position: fixed;
   top: 0;
@@ -21,7 +21,7 @@ export const SidebarMenu = styled.div`
   overflow: hidden;
   transition: all 0.3s ease-in-out;
   @media (max-width: 768px) {
-    width: ${({ sidebaropen }) => (!sidebaropen ? "200px" : "0px ")};
+    width: ${({ sidebaropen }) => (!sidebaropen ? "255px" : "0px ")};
   }
 `;
 
@@ -130,4 +130,19 @@ export const SubSidebarLink = styled(Link)`
 
 export const SubSidebarLabel = styled.span`
   margin-left: 16px;
+`;
+
+export const CloseButton = styled.div`
+  position: absolute;
+  width: 100%;
+  max-width: 278px;
+  left: 0;
+  top: 61px;
+  text-align: right;
+  display: none;
+  ${({ sidebarIsOpen }) =>
+    !sidebarIsOpen &&
+    css`
+      display: block;
+    `}
 `;

@@ -27,10 +27,11 @@ export const Wrapper = styled.div`
   }
   @media (max-width: ${({ theme }) => theme.mobile}) {
     display: block;
-
+    padding: 10px;
     > div {
       display: flex;
       flex-direction: column;
+      margin: 10px 0px;
       img {
         width: 80%;
         border-radius: 15px;

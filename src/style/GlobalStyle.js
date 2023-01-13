@@ -15,6 +15,21 @@ const GlobalStyles = createGlobalStyle`
         monospace;
     }
     
+    ::-webkit-scrollbar{
+  width: 7px;
+  height: 10px;
+}
+::-webkit-scrollbar-track{
+  box-shadow: inset 0 0 5px #a5aaad;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb{
+  background: #a5aaad;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover{
+  background: #3ea175;
+}
   `;
 
 export default GlobalStyles;

@@ -13,10 +13,17 @@ import { Content } from "../style/global.css.";
 import HeaderText from "../Component/Ui/Atoms/heading/headerText";
 
 export const Container = styled.div`
-  width: 1000px;
-  max-width: 100%;
-  padding: 0 20px;
+  /* width: 1000px; */
+  padding: 0 10px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 5px;
+  @media (max-width: ${({ theme }) => theme.mobile}) {
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+  }
 `;
 function Home() {
   const navigation = useNavigate();

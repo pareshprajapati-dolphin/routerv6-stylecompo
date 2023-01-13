@@ -15,7 +15,6 @@ const Wrapper = styled.header`
   position: sticky;
   display: flex;
   top: 0px;
-  z-index: 1;
   transition: all 0.3s ease-in-out;
   background: ${({ theme }) => theme.colors.header};
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
@@ -59,21 +58,22 @@ const StyledDivt = styled.form`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   /* display: inline; */
   margin-left: auto;
   > select {
-    width: auto;
+    display: block;
+    width: 100%;
+    padding: 8px 20px 8px 9px;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: #212529;
     background: none;
-    border: none;
-    margin-right: 20px;
-    box-sizing: border-box;
   }
 `;
 
 const ToggleIcon = styled.button`
   border: none;
-  margin-left: -10px;
+  margin-left: -20px;
   cursor: pointer;
   background: none;
 `;

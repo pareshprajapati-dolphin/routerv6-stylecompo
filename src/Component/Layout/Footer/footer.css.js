@@ -11,30 +11,27 @@ export const StyledFooter = styled.div`
   ul li {
     margin-bottom: 20px;
   }
-  p {
-    text-align: right;
-  }
   @media (max-width: ${({ theme }) => theme.mobile}) {
-    text-align: center;
     ul {
       padding: 0;
-    }
-    p {
-      text-align: center;
     }
   }
 `;
 
 export const Flex = styled.div`
   display: flex;
-  align-items: center;
-  & > div,
   & > ul {
     flex: 1;
+    width: fit-content;
   }
   @media (max-width: ${({ theme }) => theme.mobile}) {
-    flex-direction: column;
-    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    padding: 0px 20px;
+    & ul {
+      flex-basis: 50%;
+    }
   }
 `;
 

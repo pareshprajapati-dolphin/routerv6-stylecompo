@@ -9,6 +9,7 @@ import { useDropzone } from "react-dropzone";
 import { StyledForm, StyledH1, StyledImage, StyleDiv } from "./contact.css";
 import { Content } from "../../style/global.css.";
 import HeaderText from "../../Component/Ui/Atoms/heading/headerText";
+import { TextField } from "../../Component/Ui/Atoms/InputNew";
 // import { StyledDiv } from "../login/loginStyle";
 
 export default function Contact() {
@@ -43,7 +44,7 @@ export default function Contact() {
       //   )
       // );
       const base64String = await convertBase64(acceptedFiles[0]);
-      console.log("base64::", base64String);
+      // console.log("base64::", base64String);
     },
   });
 
@@ -117,7 +118,7 @@ export default function Contact() {
 
         <StyledForm>
           <StyledH1>Contact page</StyledH1>
-          <Input
+          <TextField
             id="firstname"
             name="firstname"
             type="text"
@@ -127,7 +128,7 @@ export default function Contact() {
               handleChange(ev);
             }}
           />
-          <Input
+          <TextField
             id="lastname"
             name="lastname"
             type="text"
@@ -138,7 +139,7 @@ export default function Contact() {
             }}
           />
 
-          <Input
+          <TextField
             id="email"
             name="email"
             type="text"
@@ -177,9 +178,9 @@ export default function Contact() {
           >
             {!loading ? (
               <Button
-                label="SignUp"
+                label="Send"
                 type="submit"
-                bg="#3399ff"
+                bg="#3577f1"
                 color="#fff"
                 disabled={disablButton}
                 onClick={(e) => {

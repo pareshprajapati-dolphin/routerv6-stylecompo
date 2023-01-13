@@ -1,10 +1,8 @@
 import React from "react";
-import Button from "../../Component/Ui/Atoms/button";
-import Card from "../../Component/Ui/Atoms/Card";
 import Table from "../../Component/Ui/Atoms/Table";
 import HeaderText from "../../Component/Ui/Atoms/heading/headerText";
 import { Content } from "../../style/global.css.";
-import { Wrapper } from "./Detail.css";
+import { TableWrap, Wrapper } from "./Detail.css";
 
 const tableData = [
   {
@@ -37,30 +35,65 @@ const tableData = [
     date: "October 13, 2021",
     invoice: "$5,500",
   },
+  {
+    id: "6",
+    customerName: "James White",
+    date: "October 13, 2021",
+    invoice: "$5,500",
+  },
+  {
+    id: "7",
+    customerName: "James White",
+    date: "October 13, 2021",
+    invoice: "$5,500",
+  },
+  {
+    id: "8",
+    customerName: "James White",
+    date: "October 13, 2021",
+    invoice: "$5,500",
+  },
+  {
+    id: "9",
+    customerName: "James White",
+    date: "October 13, 2021",
+    invoice: "$5,500",
+  },
+  {
+    id: "10",
+    customerName: "James White",
+    date: "October 13, 2021",
+    invoice: "$5,500",
+  },
 ];
 
 const tableheader = [
   {
     key: "id",
     title: "Id",
+    sortable: false,
   },
   {
     key: "date",
     title: "Date",
+    sortable: true,
   },
   {
     key: "customerName",
     title: "Customer Name",
+    sortable: true,
   },
 
   {
     key: "invoice",
     title: "Invoice",
+    sortable: false,
   },
   {
     key: "action",
     title: "Action",
     type: "action",
+    sortable: false,
   },
 ];
 
@@ -69,58 +102,80 @@ export default function Details() {
     <Content>
       <HeaderText varient="h2">Noraml Table</HeaderText>
       <Table tableHeader={tableheader} tableData={tableData} />
-      <div style={{ padding: "10px 0px" }}>
-        <HeaderText varient="h2">Table colors</HeaderText>
-        <Table
-          tableHeader={tableheader}
-          tableData={tableData}
-          backgroundColor="#000"
-          color="#ffffff"
-        />
-      </div>
-      <div style={{ padding: "10px 0px" }}>
-        <HeaderText varient="h2">Table colors</HeaderText>
-        <Table
-          tableHeader={tableheader}
-          tableData={tableData}
-          backgroundColor="#cef0eb"
-        />
-      </div>
 
-      <div>
-        <HeaderText varient="h2">Table Striped Row</HeaderText>
-        <Table
-          stripedRow="stripedRow"
-          tableHeader={tableheader}
-          tableData={tableData}
-        />
-      </div>
-      <div>
-        <HeaderText varient="h2">Table Striped column</HeaderText>
-        <Table
-          stripedcolumn="stripedcolumns"
-          tableHeader={tableheader}
-          tableData={tableData}
-        />
-      </div>
-
-      <div>
-        <HeaderText varient="h2">Table Striped row Hoverable</HeaderText>
-        <Table
-          tableHeader={tableheader}
-          tableData={tableData}
-          hoverRow="hoverRow"
-        />
-      </div>
-
-      <div>
-        <HeaderText varient="h2">Table Bordered Tables</HeaderText>
-        <Table
-          tableHeader={tableheader}
-          tableData={tableData}
-          tableBorder="true"
-        />
-      </div>
+      <Wrapper>
+        <TableWrap>
+          <HeaderText varient="h2">Table colors</HeaderText>
+          <Table
+            tableHeader={tableheader}
+            tableData={tableData}
+            backgroundColor="#000"
+            color="#ffffff"
+          />
+        </TableWrap>
+        <TableWrap>
+          <HeaderText varient="h2">Table colors</HeaderText>
+          <Table
+            tableHeader={tableheader}
+            tableData={tableData}
+            backgroundColor="#cef0eb"
+          />
+        </TableWrap>
+      </Wrapper>
+      <Wrapper>
+        <TableWrap>
+          <HeaderText varient="h2">Table Striped Row</HeaderText>
+          <Table
+            stripedRow="stripedRow"
+            tableHeader={tableheader}
+            tableData={tableData}
+          />
+        </TableWrap>
+        <TableWrap>
+          <HeaderText varient="h2">Table Striped column</HeaderText>
+          <Table
+            stripedcolumn="stripedcolumn"
+            tableHeader={tableheader}
+            tableData={tableData}
+          />
+        </TableWrap>
+      </Wrapper>
+      <Wrapper>
+        <TableWrap>
+          <HeaderText varient="h2">Table Striped row Hoverable</HeaderText>
+          <Table
+            tableHeader={tableheader}
+            tableData={tableData}
+            hoverRow="hoverRow"
+          />
+        </TableWrap>
+        <TableWrap>
+          <HeaderText varient="h2">Table Bordered Tables</HeaderText>
+          <Table
+            tableHeader={tableheader}
+            tableData={tableData}
+            tableBorder="true"
+          />
+        </TableWrap>
+      </Wrapper>
+      <Wrapper>
+        <TableWrap>
+          <HeaderText varient="h2">Table without-Bordered </HeaderText>
+          <Table
+            tableHeader={tableheader}
+            tableData={tableData}
+            tableBorderless="true"
+          />
+        </TableWrap>
+        <TableWrap>
+          <HeaderText varient="h2">Table Head color</HeaderText>
+          <Table
+            tableHeader={tableheader}
+            tableData={tableData}
+            tablelheadeColor="#f3f6f9"
+          />
+        </TableWrap>
+      </Wrapper>
     </Content>
   );
 }

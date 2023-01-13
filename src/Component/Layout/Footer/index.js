@@ -2,55 +2,60 @@ import React from "react";
 
 import { Container } from "../../Ui/Atoms/Container/ContainerStyled";
 import HeaderText from "../../Ui/Atoms/heading/headerText";
+import { Input } from "../../Ui/Atoms/input";
 import { Flex, SocialDiv, StyledFooter } from "./footer.css";
 
 export default function Footer() {
   return (
     <>
       <StyledFooter>
-        <Container>
-          <Flex>
-            <ul>
-              <HeaderText varient="h3" fontSize="15px">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua
-              </HeaderText>
-              <li>+1-543-123-4567</li>
-              <li>example@huddle.com</li>
-            </ul>
-            <ul>
-              <li>About Us</li>
-              <li>What We Do</li>
-              <li>FAQ</li>
-            </ul>
-
-            <ul>
-              <li>Career</li>
-              <li>Blog</li>
-              <li>Contact Us</li>
-            </ul>
-          </Flex>
-          <div
-            style={{
-              marginLeft: "2.5rem",
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <HeaderText varient="h3">Follows Us</HeaderText>
-
-            <HeaderText varient="p">
-              &copy; 2021 Huddle. All rights reserved
+        <Flex>
+          <ul className="testAbc">
+            <HeaderText varient="h3" fontSize="15px">
+              COMPANY
             </HeaderText>
-          </div>
-          <SocialDiv>
-            <div>
-              <i className="bi bi-facebook"></i>
-              <i className="bi bi-instagram"></i>
-              <i className="bi bi-youtube"></i>
-            </div>
-          </SocialDiv>
-        </Container>
+            <li>About Us</li>
+            <li>Customer Service</li>
+            <li>Contact us</li>
+          </ul>
+          <ul className="testAbc">
+            <HeaderText varient="h3" fontSize="15px">
+              LEGAL
+            </HeaderText>
+            <li>Search Teams</li>
+            <li>Privacy and Cookie Policy</li>
+          </ul>
+          <ul className="testAbc">
+            <HeaderText varient="h3" fontSize="15px">
+              NEWSLATTER
+            </HeaderText>
+            <HeaderText varient="h3" fontSize="15px">
+              Subscribe to our mailing to get the new updates.
+            </HeaderText>
+            {/* <Input labelName="" /> */}
+          </ul>
+          <ul className="testAbc">
+            <HeaderText varient="h3" fontSize="20px">
+              LEGAL
+            </HeaderText>
+            <li>Search Teams</li>
+            <li>Privacy and Cookie Policy</li>
+          </ul>
+        </Flex>
+
+        <div
+          style={{
+            backgroundColor: "#000",
+            display: "flex",
+            justifyContent: "space-between",
+            padding: "20px 10px",
+            color: "#fff",
+            fontSize: "14px",
+          }}
+        >
+          <span>&copy; 2021 Huddle. All rights reserved</span>
+          <span>Design & Develop by Paresh Prajapati</span>
+        </div>
       </StyledFooter>
     </>
   );
