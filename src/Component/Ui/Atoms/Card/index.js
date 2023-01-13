@@ -4,17 +4,14 @@ import HeaderText from "../heading/headerText";
 
 const StyledCard = styled.div`
   display: flex;
+  width: fit-content;
   align-items: center;
   background-color: #fff;
   border-radius: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-  margin: 40px 0;
-  padding: 40px;
+  margin: 20px 0px;
+  padding: 20px;
   flex-direction: ${({ layout }) => layout || "row"};
-
-  & > div {
-    flex: 1;
-  }
   :hover {
     transition: all 0.3s ease;
   }
@@ -23,22 +20,29 @@ const StyledCard = styled.div`
   }
 `;
 
+const HeaderTextDiv = styled.div`
+  max-width: 500px;
+`;
 const StyledImage = styled.img`
-  width: 80%;
+  max-width: 200px;
   border-radius: 15px;
+`;
+
+const StyleImgDiv = styled.div`
+  max-width: 200px;
 `;
 
 export default function Card({ item: { title, body, image } }) {
   return (
     <StyledCard>
-      <div>
+      <HeaderTextDiv>
         <HeaderText varient="h2">{title}</HeaderText>
         <HeaderText varient="p">{body}</HeaderText>
-      </div>
+      </HeaderTextDiv>
 
-      <div>
+      <StyleImgDiv>
         <StyledImage img src={`${image}`} alt="" />
-      </div>
+      </StyleImgDiv>
     </StyledCard>
   );
 }

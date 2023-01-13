@@ -4,8 +4,8 @@ import { EyeOpen, EyeClose } from "../Component/Icons/eyeOpen";
 
 const PasswordIcon = styled.div`
   float: right;
-  margin-right: 10px;
-  margin-top: -30px;
+  margin-right: 15px;
+  margin-top: -40px;
   position: relative;
   cursor: pointer;
 `;

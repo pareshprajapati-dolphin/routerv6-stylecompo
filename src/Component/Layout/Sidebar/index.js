@@ -11,6 +11,7 @@ import {
   SidebarLabel,
   Picture,
   ProfileImage,
+  CloseButton,
 } from "./sidebar.css";
 
 const SidebarData = [
@@ -62,8 +63,12 @@ const SidebarData = [
     ],
   },
   {
-    path: "/details",
-    navbar: "details",
+    path: "/tabledata",
+    navbar: "TableData",
+  },
+  {
+    path: "/team",
+    navbar: "Team",
   },
 ];
 
@@ -95,7 +100,7 @@ const Submenu = (item) => {
   );
 };
 
-export default function Sidebar({ sidebarIsOpen }) {
+export default function Sidebar({ sidebarIsOpen, toggleSidebar }) {
   const [localUser, setLocalUser] = useLocalStorage("userdata");
   const [user, setUser] = useState({});
 
@@ -108,6 +113,9 @@ export default function Sidebar({ sidebarIsOpen }) {
   return (
     <>
       <SidebarMenu sidebaropen={sidebarIsOpen}>
+        <CloseButton sidebarIsOpen={sidebarIsOpen}>
+          <button onClick={() => toggleSidebar()}>×</button>
+        </CloseButton>
         <div>
           <Picture>
             {/* <ProfileImage src="./logo192.png" alt="..." /> */}

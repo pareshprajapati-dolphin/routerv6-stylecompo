@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../Component/Ui/Atoms/button";
 import { Input } from "../../Component/Ui/Atoms/input";
+import { TextField } from "../../Component/Ui/Atoms/InputNew";
 import { Content } from "../../style/global.css.";
 import { StyledForm } from "../contact/contact.css";
 
@@ -42,7 +43,7 @@ export default function AddUser() {
       </div>
 
       <StyledForm>
-        <Input
+        <TextField
           id="firstname"
           name="firstname"
           type="text"
@@ -52,7 +53,7 @@ export default function AddUser() {
             handleChange(ev);
           }}
         />
-        <Input
+        <TextField
           id="lastname"
           name="lastname"
           type="text"
@@ -62,8 +63,7 @@ export default function AddUser() {
             handleChange(e);
           }}
         />
-
-        <Input
+        <TextField
           id="email"
           name="email"
           type="text"

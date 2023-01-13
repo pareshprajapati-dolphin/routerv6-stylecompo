@@ -20,6 +20,7 @@ import EditUser from "./pages/user/editUser";
 import AddUser from "./pages/user/addUser";
 import { useEffect, useState } from "react";
 import ProgessBar from "./Component/ProgessBar";
+import Team from "./pages/Team";
 
 const theme = {
   colors: {
@@ -80,7 +81,7 @@ function App() {
           ],
         },
         {
-          path: "details",
+          path: "tabledata",
           element: <Details />,
         },
         {
@@ -125,6 +126,10 @@ function App() {
               ],
             },
           ],
+        },
+        {
+          path: "team",
+          element: <Team />,
         },
       ],
     },

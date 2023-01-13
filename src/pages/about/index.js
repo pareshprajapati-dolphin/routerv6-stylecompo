@@ -121,8 +121,8 @@ export default function About() {
             User Name data::-- {userLogin.name}
           </HeaderText>
           <HeaderText varient="p">
-            I'm {userLogin.name}. A Full stack Developer, youtuber and
-            freelancer. A Full stack Developer, youtuber and freelancer.
+            I'm {userLogin.name}. A Full stack Developer, youtub and freelancer.
+            A Full stack Developer, youtub and freelancer.
           </HeaderText>
         </Wrapper>
         <p className="hero-top-data">drag and drop section</p>

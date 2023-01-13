@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 // import styled from "styled-components";
 // import { useAuth } from "../../Component/store/AuthProvider";
 import Button from "../../Component/Ui/Atoms/button";
-import { Input, PasswordInput } from "../../Component/Ui/Atoms/input";
+// import { Input, PasswordInput } from "../../Component/Ui/Atoms/input";
 import { loginApi } from "../../Api/apiService";
 import { useLocalStorage } from "../../hook/useLocalStorage";
 import { useCookiesStorage } from "../../hook/useCookiesStorage";
@@ -14,6 +14,10 @@ import { useDispatch } from "react-redux";
 // import { addNewKey, addUser } from "../../redux/reducer/userReducer";
 import { useTranslation } from "react-i18next";
 import { StyledDiv, Form, StyledH1 } from "./loginStyle";
+import {
+  TextField,
+  PasswordTextField,
+} from "../../Component/Ui/Atoms/InputNew";
 
 export default function Login() {
   // const { login, user, userToken } = useAuth();
@@ -138,13 +142,13 @@ export default function Login() {
 
         <Form>
           <StyledH1>Login Page</StyledH1>
-          <Input
+          <TextField
             id="email"
             name="email"
             type="text"
             value={loginData.email}
             // labelName={t("labels.email_address")}
-            labelName="Email Address"
+            labelName="Email or username"
             onChange={(e) => {
               handleChange(e);
             }}
@@ -157,7 +161,7 @@ export default function Login() {
               {emailError}
             </span>
           )}
-          <PasswordInput
+          <PasswordTextField
             id="password"
             name="password"
             type="password"
@@ -196,7 +200,7 @@ export default function Login() {
           >
             {!loading ? (
               <Button
-                bg="#3399ff"
+                bg="#3577f1"
                 color="#fff"
                 label="Login"
                 disabled={disableButton}

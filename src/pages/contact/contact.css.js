@@ -6,13 +6,15 @@ export const StyledH1 = styled.h1`
 `;
 export const StyledForm = styled.form`
   margin: 0 auto;
-  width: 100%;
-  max-width: 500px;
+  width: 50%;
   padding: 1.3rem;
   display: flex;
   flex-direction: column;
   position: relative;
   background-color: #ffffff;
+  @media (max-width: ${({ theme }) => theme.mobile}) {
+    width: fit-content;
+  }
 `;
 
 export const StyleDiv = styled.div`

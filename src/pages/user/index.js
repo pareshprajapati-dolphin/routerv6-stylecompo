@@ -81,6 +81,11 @@ export default function User() {
       title: "Action",
     },
   ];
+  const [test, setTest] = useState();
+
+  const handleChange = (e) => {
+    setTest(e.target.value);
+  };
 
   return (
     <>
@@ -89,7 +94,7 @@ export default function User() {
           <TableHeader>
             <HeaderText varient="h1">User</HeaderText>
             <Button
-              bg="#3399ff"
+              bg="#3577f1"
               color="#fff"
               label="Add User"
               onClick={() => navigation("/user/adduser")}

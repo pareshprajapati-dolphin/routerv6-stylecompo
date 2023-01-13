@@ -174,7 +174,7 @@ export default function CreateAccount() {
             {!loading ? (
               <Button
                 label="SignUp"
-                bg="#339999"
+                bg="#3577f1"
                 color="#fff"
                 disabled={disableButton}
                 onClick={(e) => {

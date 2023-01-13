@@ -4,35 +4,43 @@ import PasswordToggle from "../../../hook/usePasswordToggle";
 
 const ContainerEl = styled.div`
   width: 100%;
-  flex-direction: row;
-
-  margin-bottom: 10px;
+  position: relative;
+  font-weight: 500;
+  margin: 10px 0px;
   @media (max-width: 768px) {
     flex-direction: column;
     width: 100%;
   }
 `;
 const InputEl = styled.input`
-  height: auto;
   width: 100%;
-  outline: 0;
+  padding: 4px 5px;
+  height: 40px;
   font-size: 20px;
-  padding: 5px 0px;
-  border: 0;
-  border-bottom: 2px solid black;
+  font-weight: 400;
+  border: 2px solid #d7cfcf;
+  &:focus {
+    box-shadow: none;
+    outline: none;
+    border: 2px solid #1976d2;
+  }
+
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
-  &:-webkit-autofill:focus,
-  &:-webkit-autofill:active {
-    -webkit-transition: "white";
-    -webkit-transition-delay: 9999s;
+  &:-webkit-autofill:active,
+  &:-webkit-autofill:focus {
+    background-color: transparent !important;
+    -webkit-box-shadow: 0 0 0 50px white inset;
   }
 `;
 
 const Label = styled.label`
-  width: 100px;
-  font-size: 20px;
-  margin-bottom: 0.5rem;
+  position: absolute;
+  top: -15px;
+  left: 10px;
+  background-color: #fff;
+  padding: 5px 10px;
+  font-size: 15px;
 `;
 
 function Input({

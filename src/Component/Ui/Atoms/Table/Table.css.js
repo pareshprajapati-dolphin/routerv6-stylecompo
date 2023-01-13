@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 export const TableContainer = styled.table`
   width: 100%;
   height: 100%;
-  border-collapse: ${({ tableBorder }) => !tableBorder && "collapse"};
+  border-collapse: ${({ tableBorder }) => (tableBorder ? "" : "collapse")};
   box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.08);
   @media only screen and (max-width: 992px) {
     table {
@@ -18,7 +18,10 @@ export const TableHead = styled.thead`
 
 export const TableTh = styled.th`
   font-size: 15px;
-  background: ${({ backgroundColor }) => backgroundColor || "#ffff"};
+  position: sticky;
+  top: 0;
+  background: ${({ backgroundColor, tablelheadeColor }) =>
+    tablelheadeColor || backgroundColor || "#ffff"};
   color: ${({ color }) => color || "#000"};
   text-align: left;
   padding: 0px 30px;
@@ -35,8 +38,9 @@ export const TableTh = styled.th`
 `;
 
 export const TableTr = styled.tr`
-  height: 60px;
-  border-bottom: 1px solid grey;
+  height: 58px;
+  border-bottom: ${({ tableBorderless }) =>
+    tableBorderless ? "" : "1px solid #dbdde0"};
   background: ${({ backgroundColor }) => backgroundColor || "#ffff"};
   color: ${({ color }) => color || "#000"};
 
@@ -44,7 +48,7 @@ export const TableTr = styled.tr`
     stripedRow &&
     css`
       :nth-child(odd) {
-        background-color: #eee;
+        background-color: #fbfbfb;
       }
       :nth-child(even) {
         background-color: #fff;
@@ -57,15 +61,19 @@ export const TableTr = styled.tr`
 
 export const TableCell = styled.td`
   padding: 0px 30px;
-  border-bottom: ${({ tableBorder }) => !tableBorder && "1px solid #3c1742"};
   ${({ stripedcolumn }) =>
     stripedcolumn &&
     css`
       :nth-child(odd) {
-        background-color: #e7e5e5;
+        background-color: #fbfbfb;
       }
       :nth-child(even) {
-        background-color: #fff;
+        background-color: #ffffff;
       }
     `};
+`;
+export const StyleNoData = styled.span`
+  display: flex;
+  align-items: center;
+  width: 100%;
 `;
