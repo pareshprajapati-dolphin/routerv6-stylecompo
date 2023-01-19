@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next";
 import withAuth from "../Component/Hoc";
 import { Content } from "../style/global.css.";
 import HeaderText from "../Component/Ui/Atoms/heading/headerText";
+import { decodeLocalData } from "../Component/Util";
 
 export const Container = styled.div`
   /* width: 1000px; */
@@ -37,6 +38,9 @@ function Home() {
   const number_of_days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
 
   useEffect(() => {
+    let userData = decodeLocalData();
+    console.log("_pp test userData::: ", userData);
+
     if (!localUser || !appToken) {
       navigation("/login");
     } else {

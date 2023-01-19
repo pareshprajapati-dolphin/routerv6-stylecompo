@@ -173,7 +173,6 @@ export default function Header({ toggleSidebar }) {
           </StyledButton>
         </StyledDivt>
       </Wrapper>
-      <Outlet />
     </>
   );
 }

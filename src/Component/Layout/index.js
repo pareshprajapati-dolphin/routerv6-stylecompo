@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-// import { Outlet } from "react-router-dom";
-import styled, { css } from "styled-components";
+import { Outlet } from "react-router-dom";
+import styled from "styled-components";
 import Footer from "./Footer";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
@@ -24,7 +24,8 @@ export default function Layout({ children }) {
       <Sidebar sidebarIsOpen={sidebarIsOpen} toggleSidebar={toggleSidebar} />
       <AppWrapper sideberopen={sidebarIsOpen}>
         <Header toggleSidebar={toggleSidebar} />
-        {children}
+        <Outlet />
+
         <Footer />
       </AppWrapper>
     </>

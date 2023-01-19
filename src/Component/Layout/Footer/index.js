@@ -1,16 +1,13 @@
 import React from "react";
-
-import { Container } from "../../Ui/Atoms/Container/ContainerStyled";
 import HeaderText from "../../Ui/Atoms/heading/headerText";
-import { Input } from "../../Ui/Atoms/input";
-import { Flex, SocialDiv, StyledFooter } from "./footer.css";
+import { Flex, StyledFooter, StyledFooterDiv } from "./footer.css";
 
 export default function Footer() {
   return (
     <>
       <StyledFooter>
         <Flex>
-          <ul className="testAbc">
+          <ul>
             <HeaderText varient="h3" fontSize="15px">
               COMPANY
             </HeaderText>
@@ -18,14 +15,14 @@ export default function Footer() {
             <li>Customer Service</li>
             <li>Contact us</li>
           </ul>
-          <ul className="testAbc">
+          <ul>
             <HeaderText varient="h3" fontSize="15px">
               LEGAL
             </HeaderText>
             <li>Search Teams</li>
             <li>Privacy and Cookie Policy</li>
           </ul>
-          <ul className="testAbc">
+          <ul>
             <HeaderText varient="h3" fontSize="15px">
               NEWSLATTER
             </HeaderText>
@@ -34,7 +31,7 @@ export default function Footer() {
             </HeaderText>
             {/* <Input labelName="" /> */}
           </ul>
-          <ul className="testAbc">
+          <ul>
             <HeaderText varient="h3" fontSize="20px">
               LEGAL
             </HeaderText>
@@ -43,19 +40,10 @@ export default function Footer() {
           </ul>
         </Flex>
 
-        <div
-          style={{
-            backgroundColor: "#000",
-            display: "flex",
-            justifyContent: "space-between",
-            padding: "20px 10px",
-            color: "#fff",
-            fontSize: "14px",
-          }}
-        >
+        <StyledFooterDiv>
           <span>&copy; 2021 Huddle. All rights reserved</span>
           <span>Design & Develop by Paresh Prajapati</span>
-        </div>
+        </StyledFooterDiv>
       </StyledFooter>
     </>
   );
