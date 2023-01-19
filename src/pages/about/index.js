@@ -94,9 +94,9 @@ export default function About() {
   const array2 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const len = Math.max(array1.length, array2.length);
   const result = [];
-  const MautiplrLenght = useMemo(() => {
+  const MautipleLenght = useMemo(() => {
     const result = [];
-    console.log(len);
+    // console.log(len);
     for (let i = 0; i < len; i++) {
       if (array1[i] !== undefined) {
         result.push(array1[i]);

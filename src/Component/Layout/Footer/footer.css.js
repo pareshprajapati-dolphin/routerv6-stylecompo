@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledFooter = styled.div`
+export const StyledFooter = styled.footer`
   background-color: ${({ theme }) => theme.colors.footer};
   color: black;
   position: sticky;
@@ -42,4 +42,12 @@ export const SocialDiv = styled.div`
   > div > i {
     padding: 0px 3px;
   }
+`;
+export const StyledFooterDiv = styled.div`
+  background-color: #000;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 10px;
+  color: #fff;
+  font-size: 14px;
 `;

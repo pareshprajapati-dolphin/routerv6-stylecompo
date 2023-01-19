@@ -18,6 +18,7 @@ import {
   TextField,
   PasswordTextField,
 } from "../../Component/Ui/Atoms/InputNew";
+import { EncodeLocalData } from "../../Component/Util";
 
 export default function Login() {
   // const { login, user, userToken } = useAuth();
@@ -57,12 +58,15 @@ export default function Login() {
     setLoading(true);
     const data = await loginApi(loginData);
     if (data.status === 200) {
+      let localData = EncodeLocalData(data?.data);
+
       setLocalUser(data.data);
       setAppToken(data?.data?.token);
       toast.success(data.message);
       // login(data, data?.data?.token);
       navigation("/", { replace: true });
     } else {
+      setLoading(false);
       toast.error(data?.message);
     }
 

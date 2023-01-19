@@ -3,6 +3,7 @@ import useLocalStorage from "../../../hook/useLocalStorage";
 import CarletDown from "../../Icons/carletDown";
 import CarletLeft from "../../Icons/carletLeft";
 import CarRounded from "../../Icons/carRounded";
+import { decodeLocalData } from "../../Util";
 import {
   MenuItems,
   SidebarMenu,
@@ -105,9 +106,13 @@ export default function Sidebar({ sidebarIsOpen, toggleSidebar }) {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    if (localUser) {
+    let userData = decodeLocalData();
+
+    if (userData) {
       setUser(localUser);
     }
+    // if (localUser) {
+    // }
   }, [localUser]);
 
   return (
